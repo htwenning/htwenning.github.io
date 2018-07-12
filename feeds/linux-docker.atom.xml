@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>wenning's blog - Linux, Docker</title><link href="https://htwenning.github.io/" rel="alternate"></link><link href="https://htwenning.github.io/feeds/linux-docker.atom.xml" rel="self"></link><id>https://htwenning.github.io/</id><updated>2018-07-12T00:00:00+08:00</updated><entry><title>a little docker-compose</title><link href="https://htwenning.github.io/a-little-docker-compose.html" rel="alternate"></link><published>2018-07-12T00:00:00+08:00</published><updated>2018-07-12T00:00:00+08:00</updated><author><name>wenning</name></author><id>tag:htwenning.github.io,2018-07-12:/a-little-docker-compose.html</id><summary type="html">&lt;h1&gt;a little docker-compose&lt;/h1&gt;
+&lt;p&gt;docker-compose 可以快速给一个临时的linux开发环境&lt;/p&gt;
+&lt;p&gt;docker-compose run service_name&lt;/p&gt;
+&lt;p&gt;--rm参数可以在推出的时候删除这个container&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;例子：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;在项目下面创建 docker-compose.yml, 内容如下&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;version: &amp;#39;3&amp;#39;
+services:
+  app:
+    image: &amp;quot;python:3.6&amp;quot;
+    volumes:
+      - .:/app
+    command: bash
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;启动并attach bash:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;docker-compose run app&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;推出后container stop，通过docker ps -a 查看container_id, 后面再启动：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;docker start [container_id]; docker attach [container_id]&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;tips：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;根据需要可以commit镜像&lt;/li&gt;
+&lt;li&gt;可以写Dockerfile和更多的service, 利用docker-compose up启动&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;参考 …&lt;/strong&gt;&lt;/p&gt;</summary><content type="html">&lt;h1&gt;a little docker-compose&lt;/h1&gt;
+&lt;p&gt;docker-compose 可以快速给一个临时的linux开发环境&lt;/p&gt;
+&lt;p&gt;docker-compose run service_name&lt;/p&gt;
+&lt;p&gt;--rm参数可以在推出的时候删除这个container&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;例子：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;在项目下面创建 docker-compose.yml, 内容如下&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;version: &amp;#39;3&amp;#39;
+services:
+  app:
+    image: &amp;quot;python:3.6&amp;quot;
+    volumes:
+      - .:/app
+    command: bash
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;启动并attach bash:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;docker-compose run app&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;推出后container stop，通过docker ps -a 查看container_id, 后面再启动：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;docker start [container_id]; docker attach [container_id]&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;tips：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;根据需要可以commit镜像&lt;/li&gt;
+&lt;li&gt;可以写Dockerfile和更多的service, 利用docker-compose up启动&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;参考：&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;https://docs.docker.com/compose/&lt;/li&gt;
+&lt;/ul&gt;</content></entry></feed>

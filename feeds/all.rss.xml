@@ -1,5 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0"><channel><title>wenning's blog</title><link>https://htwenning.github.io/</link><description></description><lastBuildDate>Thu, 12 Jul 2018 00:00:00 +0800</lastBuildDate><item><title>a little docker-compose</title><link>https://htwenning.github.io/a-little-docker-compose.html</link><description>&lt;h1&gt;a little docker-compose&lt;/h1&gt;
+<rss version="2.0"><channel><title>wenning's blog</title><link>https://htwenning.github.io/</link><description></description><lastBuildDate>Tue, 21 Aug 2018 00:00:00 +0800</lastBuildDate><item><title>Emacs with Jetbrain IDE</title><link>https://htwenning.github.io/emacs-with-jetbrain-ide.html</link><description>&lt;h1&gt;Emacs with Jetbrain IDE&lt;/h1&gt;
+&lt;p&gt;为了启动的效率， 使用c/s形式的emacs；
+推荐一个配置：https://korewanetadesu.com/emacs-on-os-x.html
+下面摘抄一下&lt;/p&gt;
+&lt;p&gt;启动一个emacs server：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;tell&lt;/span&gt; &lt;span class="nb"&gt;application&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Terminal&amp;quot;&lt;/span&gt;
+   &lt;span class="nb"&gt;do shell script&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;/Applications/Emacs.app/Contents/MacOS/Emacs --daemon&amp;quot;&lt;/span&gt;
+&lt;span class="k"&gt;end&lt;/span&gt; &lt;span class="k"&gt;tell&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;以一个frame启动一个emacs client：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;tell&lt;/span&gt; &lt;span class="nb"&gt;application&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Terminal&amp;quot;&lt;/span&gt;
+    &lt;span class="k"&gt;try&lt;/span&gt;
+        &lt;span class="nb"&gt;do shell script&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;/Applications/Emacs.app/Contents/MacOS/bin/emacsclient -c -n &amp;amp;&amp;quot;&lt;/span&gt;
+        &lt;span class="k"&gt;tell …&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">wenning</dc:creator><pubDate>Tue, 21 Aug 2018 00:00:00 +0800</pubDate><guid isPermaLink="false">tag:htwenning.github.io,2018-08-21:/emacs-with-jetbrain-ide.html</guid></item><item><title>a little docker-compose</title><link>https://htwenning.github.io/a-little-docker-compose.html</link><description>&lt;h1&gt;a little docker-compose&lt;/h1&gt;
 &lt;p&gt;docker-compose 可以快速给一个临时的linux开发环境&lt;/p&gt;
 &lt;p&gt;docker-compose run service_name&lt;/p&gt;
 &lt;p&gt;--rm参数可以在推出的时候删除这个container&lt;/p&gt;
@@ -28,22 +43,7 @@ services:
 &lt;li&gt;根据需要可以commit镜像&lt;/li&gt;
 &lt;li&gt;可以写Dockerfile和更多的service, 利用docker-compose up启动&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;参考 …&lt;/strong&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">wenning</dc:creator><pubDate>Thu, 12 Jul 2018 00:00:00 +0800</pubDate><guid isPermaLink="false">tag:htwenning.github.io,2018-07-12:/a-little-docker-compose.html</guid></item><item><title>Emacs with Jetbrain IDE</title><link>https://htwenning.github.io/emacs-with-jetbrain-ide.html</link><description>&lt;h1&gt;Emacs with Jetbrain IDE&lt;/h1&gt;
-&lt;p&gt;为了启动的效率， 使用c/s形式的emacs；
-推荐一个配置：https://korewanetadesu.com/emacs-on-os-x.html
-下面摘抄一下&lt;/p&gt;
-&lt;p&gt;启动一个emacs server：&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;tell&lt;/span&gt; &lt;span class="nb"&gt;application&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Terminal&amp;quot;&lt;/span&gt;
-   &lt;span class="nb"&gt;do shell script&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;/Applications/Emacs.app/Contents/MacOS/Emacs --daemon&amp;quot;&lt;/span&gt;
-&lt;span class="k"&gt;end&lt;/span&gt; &lt;span class="k"&gt;tell&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;以一个frame启动一个emacs client：&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;tell&lt;/span&gt; &lt;span class="nb"&gt;application&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Terminal&amp;quot;&lt;/span&gt;
-    &lt;span class="k"&gt;try&lt;/span&gt;
-        &lt;span class="nb"&gt;do shell script&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;/Applications/Emacs.app/Contents/MacOS/bin/emacsclient -c -n &amp;amp;&amp;quot;&lt;/span&gt;
-        &lt;span class="k"&gt;tell …&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">wenning</dc:creator><pubDate>Thu, 12 Jul 2018 00:00:00 +0800</pubDate><guid isPermaLink="false">tag:htwenning.github.io,2018-07-12:/emacs-with-jetbrain-ide.html</guid></item><item><title>a little awk</title><link>https://htwenning.github.io/a-little-awk.html</link><description>&lt;h1&gt;a little awk&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;参考 …&lt;/strong&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">wenning</dc:creator><pubDate>Thu, 12 Jul 2018 00:00:00 +0800</pubDate><guid isPermaLink="false">tag:htwenning.github.io,2018-07-12:/a-little-docker-compose.html</guid></item><item><title>a little awk</title><link>https://htwenning.github.io/a-little-awk.html</link><description>&lt;h1&gt;a little awk&lt;/h1&gt;
 &lt;p&gt;参考:
 https://gregable.com/2010/09/why-you-should-know-just-little-awk.html&lt;/p&gt;
 &lt;ul&gt;

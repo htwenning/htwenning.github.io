@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <title>wenning's blog</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width">
+        <link rel="stylesheet" href="/theme/css/main.css"/>
+        <link rel="stylesheet" href="/theme/css/fonts.css"/>
+        <link rel="shortcut icon" type="image/png" href="/theme/favicon.png">
+</head>
+
+<body>
+    <section id ="posts">
+<div class="navigation-container">
+    <span id="home-link">
+        <a href="/">Home</a>
+    </span>
+</div>
+<section id="content" class="body">
+  <header>
+    <h2 class="entry-title">
+      <a href="#" rel="bookmark"
+         title="Permalink to Emacs with Jetbrain IDE">Emacs with Jetbrain IDE</a></h2>
+ 
+  </header>
+  <footer class="post-info">
+    <time class="published" datetime="2018-07-12T00:00:00+08:00">
+      Thu 12 July 2018
+    </time>
+    <address class="vcard author">
+      By           <a class="url fn" href="https://htwenning.github.io/author/wenning.html">wenning</a>
+    </address>
+  </footer><!-- /.post-info -->
+  <div class="entry-content">
+    <h1>Emacs with Jetbrain IDE</h1>
+<p>为了启动的效率， 使用c/s形式的emacs；
+推荐一个配置：https://korewanetadesu.com/emacs-on-os-x.html
+下面摘抄一下</p>
+<p>启动一个emacs server：</p>
+<div class="highlight"><pre><span></span><span class="k">tell</span> <span class="nb">application</span> <span class="s2">&quot;Terminal&quot;</span>
+   <span class="nb">do shell script</span> <span class="s2">&quot;/Applications/Emacs.app/Contents/MacOS/Emacs --daemon&quot;</span>
+<span class="k">end</span> <span class="k">tell</span>
+</pre></div>
+
+
+<p>以一个frame启动一个emacs client：</p>
+<div class="highlight"><pre><span></span><span class="k">tell</span> <span class="nb">application</span> <span class="s2">&quot;Terminal&quot;</span>
+    <span class="k">try</span>
+        <span class="nb">do shell script</span> <span class="s2">&quot;/Applications/Emacs.app/Contents/MacOS/bin/emacsclient -c -n &amp;&quot;</span>
+        <span class="k">tell</span> <span class="nb">application</span> <span class="s2">&quot;Emacs&quot;</span> <span class="k">to</span> <span class="nb">activate</span>
+    <span class="nb">on</span> <span class="k">error</span>
+        <span class="nb">do shell script</span> <span class="s2">&quot;/Applications/Emacs.app/Contents/MacOS/Emacs&quot;</span>
+    <span class="k">end</span> <span class="k">try</span>
+<span class="k">end</span> <span class="k">tell</span>
+</pre></div>
+
+
+<p>下面两个脚本作为后续applescript的基础, 在 server没有响应的时候执行
+在终端启动一个gui emacs</p>
+<p>emacsc</p>
+<div class="highlight"><pre><span></span><span class="ch">#!/bin/sh</span>
+<span class="nb">set</span> -e
+/Applications/Emacs.app/Contents/MacOS/Emacs <span class="s2">&quot;</span><span class="nv">$@</span><span class="s2">&quot;</span>
+</pre></div>
+
+
+<p>在终端启动一个emacs</p>
+<p>emacst</p>
+<div class="highlight"><pre><span></span><span class="ch">#!/bin/sh</span>
+<span class="nb">set</span> -e
+/Applications/Emacs.app/Contents/MacOS/Emacs -nw <span class="s2">&quot;</span><span class="nv">$@</span><span class="s2">&quot;</span>
+</pre></div>
+
+
+<p>ec</p>
+<div class="highlight"><pre><span></span><span class="k">set</span> <span class="o">-</span><span class="nv">e</span>
+<span class="nv">EMACSCLIENT</span><span class="o">=/</span><span class="nv">Applications</span><span class="o">/</span><span class="nv">Emacs</span><span class="p">.</span><span class="nv">app</span><span class="o">/</span><span class="nv">Contents</span><span class="o">/</span><span class="nv">MacOS</span><span class="o">/</span><span class="nv">bin</span><span class="o">/</span><span class="nv">emacsclient</span>
+<span class="nv">exec</span> <span class="err">$</span><span class="nv">EMACSCLIENT</span> <span class="o">-</span><span class="nv">c</span> <span class="o">-</span><span class="nv">a</span> <span class="nv">emacsc</span> <span class="s2">&quot;$@&quot;</span>
+</pre></div>
+
+
+<p>et</p>
+<div class="highlight"><pre><span></span><span class="k">set</span> <span class="o">-</span><span class="nv">e</span>
+<span class="nv">EMACSCLIENT</span><span class="o">=/</span><span class="nv">Applications</span><span class="o">/</span><span class="nv">Emacs</span><span class="p">.</span><span class="nv">app</span><span class="o">/</span><span class="nv">Contents</span><span class="o">/</span><span class="nv">MacOS</span><span class="o">/</span><span class="nv">bin</span><span class="o">/</span><span class="nv">emacsclient</span>
+<span class="nv">exec</span> <span class="err">$</span><span class="nv">EMACSCLIENT</span> <span class="o">-</span><span class="nv">t</span> <span class="o">-</span><span class="nv">a</span> <span class="nv">emacst</span> <span class="s2">&quot;$@&quot;</span>
+</pre></div>
+
+
+<p>添加一些alias到.bash_profile, 替换系统自带的emacs命令</p>
+<div class="highlight"><pre><span></span><span class="nb">alias</span> <span class="nv">emacsclient</span><span class="o">=</span><span class="s2">&quot;/Applications/Emacs.app/Contents/MacOS/bin/emacsclient&quot;</span>
+<span class="nb">alias</span> <span class="nv">emacs</span><span class="o">=</span><span class="s2">&quot;ec&quot;</span>
+<span class="nb">export</span> <span class="nv">EDITOR</span><span class="o">=</span><span class="s2">&quot;ec&quot;</span>
+</pre></div>
+
+
+<p>启动的时候新的frame是不能获得焦点的， 把下面的添加到init.el解决</p>
+<div class="highlight"><pre><span></span><span class="p">(</span><span class="nb">when</span> <span class="p">(</span><span class="nb">featurep</span> <span class="ss">&#39;ns</span><span class="p">)</span>
+  <span class="p">(</span><span class="nb">defun</span> <span class="nv">ns-raise-emacs</span> <span class="p">()</span>
+    <span class="s">&quot;Raise Emacs.&quot;</span>
+    <span class="p">(</span><span class="nv">ns-do-applescript</span> <span class="s">&quot;tell application \&quot;Emacs\&quot; to activate&quot;</span><span class="p">))</span>
+
+  <span class="p">(</span><span class="nb">defun</span> <span class="nv">ns-raise-emacs-with-frame</span> <span class="p">(</span><span class="nv">frame</span><span class="p">)</span>
+    <span class="s">&quot;Raise Emacs and select the provided frame.&quot;</span>
+    <span class="p">(</span><span class="nb">with-selected-frame</span> <span class="nv">frame</span>
+      <span class="p">(</span><span class="nb">when</span> <span class="p">(</span><span class="nv">display-graphic-p</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">ns-raise-emacs</span><span class="p">))))</span>
+
+  <span class="p">(</span><span class="nv">add-hook</span> <span class="ss">&#39;after-make-frame-functions</span> <span class="ss">&#39;ns-raise-emacs-with-frame</span><span class="p">)</span>
+
+  <span class="p">(</span><span class="nb">when</span> <span class="p">(</span><span class="nv">display-graphic-p</span><span class="p">)</span>
+    <span class="p">(</span><span class="nv">ns-raise-emacs</span><span class="p">)))</span>
+</pre></div>
+
+
+<p>然后在jetbrain ide比如pycharm里面，</p>
+<p>preferences-&gt; Tools-&gt; External Tools-&gt; +新建一个</p>
+<ul>
+<li>Program： ec</li>
+<li>Arguments: $FilePath$</li>
+<li>Working directory: $FileDir$</li>
+</ul>
+<p>还可以在keymap设置一个快捷键  比如command+e，</p>
+<p>这样可以直接使用emacsclient打开当前的文件</p>
+  </div><!-- /.entry-content -->
+</section>
+
+        <a href="/">
+          <svg id="ghost-icon" width="300" height="300" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+            <g>
+            <title>background</title>
+            <g display="none" overflow="visible" y="0" x="0" height="100%" width="100%" id="canvasGrid">
+            <rect fill="url(#gridpattern)" stroke-width="0" y="0" x="0" height="100%" width="100%"></rect>
+            </g>
+            </g>
+            <g>
+            <title>Layer 1</title>
+            <rect id="svg_5" height="221" width="79" y="20" x="106.5" stroke-width="0" stroke="null" fill="#84D3DB"></rect>
+            <rect stroke="null" id="svg_7" height="201.000006" width="145.999999" y="39" x="73.5" stroke-width="0" fill="#84D3DB"></rect>
+            <rect stroke="null" id="svg_8" height="185.999999" width="177.000003" y="54" x="58.5" stroke-width="0" fill="#84D3DB"></rect>
+            <rect stroke="null" id="svg_9" height="154.000007" width="220.000014" y="76" x="36.5" stroke-width="0" fill="#84D3DB"></rect>
+            <rect stroke="null" id="svg_10" height="89.000004" width="255.000018" y="130" x="22.5" stroke-width="0" fill="#84D3DB"></rect>
+            <rect stroke="null" id="svg_11" height="127" width="36.000004" y="130" x="22.5" stroke-width="0" fill="#84D3DB"></rect>
+            <rect stroke="null" id="svg_12" height="144.000007" width="21.000004" y="131" x="22.5" stroke-width="0" fill="#84D3DB"></rect>
+            <rect stroke="null" id="svg_13" height="122.999998" width="42.000004" y="130" x="235.499999" stroke-width="0" fill="#84D3DB"></rect>
+            <rect stroke="null" id="svg_14" height="145.99999" width="24.000004" y="130" x="253.499998" stroke-width="0" fill="#84D3DB"></rect>
+            <rect stroke="null" id="svg_19" height="116" width="40.000001" y="157" x="93.499999" stroke-width="0" fill="#84D3DB"></rect>
+            <rect stroke="null" id="svg_20" height="116" width="40.000001" y="158" x="163.499999" stroke-width="0" fill="#84D3DB"></rect>
+            <rect stroke="null" id="svg_21" height="116" width="40.000001" y="139" x="76.499999" stroke-width="0" fill="#84D3DB"></rect>
+            <rect stroke="null" id="svg_22" height="116" width="40.000001" y="139" x="177.499999" stroke-width="0" fill="#84D3DB"></rect>
+            <rect stroke="null" id="svg_24" height="88" width="36.000002" y="76" x="94.499998" stroke-width="0" fill="#ffffff"></rect>
+            <rect stroke="null" id="svg_26" height="56.999994" width="69.000002" y="91.000001" x="76.499996" stroke-width="0" fill="#ffffff"></rect>
+            <rect stroke="null" id="svg_33" height="88" width="36.000002" y="76" x="94.499998" stroke-width="0" fill="#ffffff"></rect>
+            <rect stroke="null" id="svg_34" height="56.999994" width="69.000002" y="91.000001" x="76.499996" stroke-width="0" fill="#ffffff"></rect>
+            <rect class="ghost-icon-eye" stroke="null" id="svg_35" height="39" width="33" y="109" x="113.5" stroke-width="0" fill="#0000ff"></rect>
+            <rect stroke="null" id="svg_36" height="88" width="36.000002" y="77" x="199.499998" stroke-width="0" fill="#ffffff"></rect>
+            <rect stroke="null" id="svg_37" height="56.999994" width="69.000002" y="92.000001" x="181.499996" stroke-width="0" fill="#ffffff"></rect>
+            <rect class="ghost-icon-eye" stroke="null" id="svg_38" height="39" width="33" y="110" x="218.5" stroke-width="0" fill="#0000ff"></rect>
+            </g>
+            </svg>
+        </a>
+        <footer id="footer" class="footer">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>,
+                which takes great advantage of <a href="http://python.org">Python</a>, 
+                theme cloned from <a href="https://github.com/mikeecb/cypher-jekyll-theme">cypher Jekyll theme</a>.
+                </address><!-- /#about -->
+        </footer><!-- /#contentinfo -->
+        </section>
+</body>
+</html>

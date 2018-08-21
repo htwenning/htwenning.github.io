@@ -1,66 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>wenning's blog</title><link href="https://htwenning.github.io/" rel="alternate"></link><link href="https://htwenning.github.io/feeds/all.atom.xml" rel="self"></link><id>https://htwenning.github.io/</id><updated>2018-07-12T00:00:00+08:00</updated><entry><title>a little docker-compose</title><link href="https://htwenning.github.io/a-little-docker-compose.html" rel="alternate"></link><published>2018-07-12T00:00:00+08:00</published><updated>2018-07-12T00:00:00+08:00</updated><author><name>wenning</name></author><id>tag:htwenning.github.io,2018-07-12:/a-little-docker-compose.html</id><summary type="html">&lt;h1&gt;a little docker-compose&lt;/h1&gt;
-&lt;p&gt;docker-compose 可以快速给一个临时的linux开发环境&lt;/p&gt;
-&lt;p&gt;docker-compose run service_name&lt;/p&gt;
-&lt;p&gt;--rm参数可以在推出的时候删除这个container&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;例子：&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;在项目下面创建 docker-compose.yml, 内容如下&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;version: &amp;#39;3&amp;#39;
-services:
-  app:
-    image: &amp;quot;python:3.6&amp;quot;
-    volumes:
-      - .:/app
-    command: bash
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;启动并attach bash:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;docker-compose run app&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;推出后container stop，通过docker ps -a 查看container_id, 后面再启动：&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;docker start [container_id]; docker attach [container_id]&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;tips：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;根据需要可以commit镜像&lt;/li&gt;
-&lt;li&gt;可以写Dockerfile和更多的service, 利用docker-compose up启动&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;参考 …&lt;/strong&gt;&lt;/p&gt;</summary><content type="html">&lt;h1&gt;a little docker-compose&lt;/h1&gt;
-&lt;p&gt;docker-compose 可以快速给一个临时的linux开发环境&lt;/p&gt;
-&lt;p&gt;docker-compose run service_name&lt;/p&gt;
-&lt;p&gt;--rm参数可以在推出的时候删除这个container&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;例子：&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;在项目下面创建 docker-compose.yml, 内容如下&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;version: &amp;#39;3&amp;#39;
-services:
-  app:
-    image: &amp;quot;python:3.6&amp;quot;
-    volumes:
-      - .:/app
-    command: bash
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;启动并attach bash:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;docker-compose run app&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;推出后container stop，通过docker ps -a 查看container_id, 后面再启动：&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;docker start [container_id]; docker attach [container_id]&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;tips：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;根据需要可以commit镜像&lt;/li&gt;
-&lt;li&gt;可以写Dockerfile和更多的service, 利用docker-compose up启动&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;参考：&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;https://docs.docker.com/compose/&lt;/li&gt;
-&lt;/ul&gt;</content></entry><entry><title>Emacs with Jetbrain IDE</title><link href="https://htwenning.github.io/emacs-with-jetbrain-ide.html" rel="alternate"></link><published>2018-07-12T00:00:00+08:00</published><updated>2018-07-12T00:00:00+08:00</updated><author><name>wenning</name></author><id>tag:htwenning.github.io,2018-07-12:/emacs-with-jetbrain-ide.html</id><summary type="html">&lt;h1&gt;Emacs with Jetbrain IDE&lt;/h1&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>wenning's blog - Emacs, Jetbrain, macos</title><link href="https://htwenning.github.io/" rel="alternate"></link><link href="https://htwenning.github.io/feeds/emacs-jetbrain-macos.atom.xml" rel="self"></link><id>https://htwenning.github.io/</id><updated>2018-07-12T00:00:00+08:00</updated><entry><title>Emacs with Jetbrain IDE</title><link href="https://htwenning.github.io/emacs-with-jetbrain-ide.html" rel="alternate"></link><published>2018-07-12T00:00:00+08:00</published><updated>2018-07-12T00:00:00+08:00</updated><author><name>wenning</name></author><id>tag:htwenning.github.io,2018-07-12:/emacs-with-jetbrain-ide.html</id><summary type="html">&lt;h1&gt;Emacs with Jetbrain IDE&lt;/h1&gt;
 &lt;p&gt;为了启动的效率， 使用c/s形式的emacs；
 推荐一个配置：https://korewanetadesu.com/emacs-on-os-x.html
 下面摘抄一下&lt;/p&gt;
@@ -163,35 +102,4 @@ services:
 &lt;li&gt;Working directory: $FileDir$&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;还可以在keymap设置一个快捷键  比如command+e，&lt;/p&gt;
-&lt;p&gt;这样可以直接使用emacsclient打开当前的文件&lt;/p&gt;</content></entry><entry><title>a little awk</title><link href="https://htwenning.github.io/a-little-awk.html" rel="alternate"></link><published>2018-07-11T18:28:00+08:00</published><updated>2018-07-11T18:28:00+08:00</updated><author><name>wenning</name></author><id>tag:htwenning.github.io,2018-07-11:/a-little-awk.html</id><summary type="html">&lt;h1&gt;a little awk&lt;/h1&gt;
-&lt;p&gt;参考:
-https://gregable.com/2010/09/why-you-should-know-just-little-awk.html&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;默认使用空格分割&lt;/li&gt;
-&lt;li&gt;使用$符号选取字段&lt;/li&gt;
-&lt;li&gt;NF是字段数, NR行号&lt;/li&gt;
-&lt;li&gt;可以使用if进行判断语句&lt;/li&gt;
-&lt;li&gt;print 打印后面的内容&lt;/li&gt;
-&lt;li&gt;可以把字段存入变量，不用声明, 也不用考虑单位&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;例子：&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;docker images &lt;span class="p"&gt;|&lt;/span&gt; awk &lt;span class="s1"&gt;&amp;#39;{print $1}&amp;#39;&lt;/span&gt;
-docker images &lt;span class="p"&gt;|&lt;/span&gt; awk &lt;span class="s1"&gt;&amp;#39;{if($1 == &amp;quot;&amp;lt;none&amp;gt;&amp;quot;){print $3}}&amp;#39;&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; xargs docker rmi
-docker images &lt;span class="p"&gt;|&lt;/span&gt; awk &lt;span class="s1"&gt;&amp;#39;{print &amp;quot;tag: &amp;quot;, $2}&amp;#39;&lt;/span&gt;
-docker images &lt;span class="p"&gt;|&lt;/span&gt; awk &lt;span class="s1"&gt;&amp;#39;{a += $NF …&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;</summary><content type="html">&lt;h1&gt;a little awk&lt;/h1&gt;
-&lt;p&gt;参考:
-https://gregable.com/2010/09/why-you-should-know-just-little-awk.html&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;默认使用空格分割&lt;/li&gt;
-&lt;li&gt;使用$符号选取字段&lt;/li&gt;
-&lt;li&gt;NF是字段数, NR行号&lt;/li&gt;
-&lt;li&gt;可以使用if进行判断语句&lt;/li&gt;
-&lt;li&gt;print 打印后面的内容&lt;/li&gt;
-&lt;li&gt;可以把字段存入变量，不用声明, 也不用考虑单位&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;例子：&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;docker images &lt;span class="p"&gt;|&lt;/span&gt; awk &lt;span class="s1"&gt;&amp;#39;{print $1}&amp;#39;&lt;/span&gt;
-docker images &lt;span class="p"&gt;|&lt;/span&gt; awk &lt;span class="s1"&gt;&amp;#39;{if($1 == &amp;quot;&amp;lt;none&amp;gt;&amp;quot;){print $3}}&amp;#39;&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; xargs docker rmi
-docker images &lt;span class="p"&gt;|&lt;/span&gt; awk &lt;span class="s1"&gt;&amp;#39;{print &amp;quot;tag: &amp;quot;, $2}&amp;#39;&lt;/span&gt;
-docker images &lt;span class="p"&gt;|&lt;/span&gt; awk &lt;span class="s1"&gt;&amp;#39;{a += $NF; print &amp;quot;total: &amp;quot;, a}&amp;#39;&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;</content></entry></feed>
+&lt;p&gt;这样可以直接使用emacsclient打开当前的文件&lt;/p&gt;</content></entry></feed>

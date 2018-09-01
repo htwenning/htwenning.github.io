@@ -1,5 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>wenning's blog</title><link href="https://htwenning.github.io/" rel="alternate"></link><link href="https://htwenning.github.io/feeds/all.atom.xml" rel="self"></link><id>https://htwenning.github.io/</id><updated>2018-08-21T00:00:00+08:00</updated><entry><title>Emacs with Jetbrain IDE</title><link href="https://htwenning.github.io/emacs-with-jetbrain-ide.html" rel="alternate"></link><published>2018-08-21T00:00:00+08:00</published><updated>2018-08-21T00:00:00+08:00</updated><author><name>wenning</name></author><id>tag:htwenning.github.io,2018-08-21:/emacs-with-jetbrain-ide.html</id><summary type="html">&lt;h1&gt;Emacs with Jetbrain IDE&lt;/h1&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>wenning's blog</title><link href="https://htwenning.github.io/" rel="alternate"></link><link href="https://htwenning.github.io/feeds/all.atom.xml" rel="self"></link><id>https://htwenning.github.io/</id><updated>2018-08-31T00:00:00+08:00</updated><entry><title>Nginx Internal (protect your static resource)</title><link href="https://htwenning.github.io/nginx-internal-protect-your-static-resource.html" rel="alternate"></link><published>2018-08-31T00:00:00+08:00</published><updated>2018-08-31T00:00:00+08:00</updated><author><name>wenning</name></author><id>tag:htwenning.github.io,2018-08-31:/nginx-internal-protect-your-static-resource.html</id><summary type="html">&lt;h1&gt;Nginx Internal (protect your static resource)&lt;/h1&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;nginx internal
+在location中使用internal标志，限制当前location仅对内部访问&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;在服务端的response headers中添加x-accel头，并指向internal位置， nginx会访问指定位置
+官方文档：https://www.nginx.com/resources/wiki/start/topics/examples/x-accel/&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;nginx配置实例：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;server&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="kn"&gt;listen&lt;/span&gt;       &lt;span class="mi"&gt;5000&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="kn"&gt;location&lt;/span&gt; &lt;span class="s"&gt;/protected&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="kn"&gt;internal&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+        &lt;span class="kn"&gt;alias&lt;/span&gt; &lt;span class="s"&gt;/Users/wenning/protected&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+    &lt;span class="kn"&gt;location&lt;/span&gt; &lt;span class="s"&gt;/doc&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="kn"&gt;proxy_pass&lt;/span&gt; &lt;span class="s"&gt;http://localhost:8888&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;python服务端实例， 这里以sanic为例：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nd"&gt;@app.route&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;/doc/&amp;lt;file&amp;gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;async&lt;/span&gt; &lt;span class="k"&gt;def …&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;</summary><content type="html">&lt;h1&gt;Nginx Internal (protect your static resource)&lt;/h1&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;nginx internal
+在location中使用internal标志，限制当前location仅对内部访问&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;在服务端的response headers中添加x-accel头，并指向internal位置， nginx会访问指定位置
+官方文档：https://www.nginx.com/resources/wiki/start/topics/examples/x-accel/&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;nginx配置实例：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;server&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="kn"&gt;listen&lt;/span&gt;       &lt;span class="mi"&gt;5000&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="kn"&gt;location&lt;/span&gt; &lt;span class="s"&gt;/protected&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="kn"&gt;internal&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+        &lt;span class="kn"&gt;alias&lt;/span&gt; &lt;span class="s"&gt;/Users/wenning/protected&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+    &lt;span class="kn"&gt;location&lt;/span&gt; &lt;span class="s"&gt;/doc&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="kn"&gt;proxy_pass&lt;/span&gt; &lt;span class="s"&gt;http://localhost:8888&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;python服务端实例， 这里以sanic为例：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nd"&gt;@app.route&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;/doc/&amp;lt;file&amp;gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;async&lt;/span&gt; &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;projected&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;file&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;response&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;raw&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;body&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="sa"&gt;b&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;headers&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="s1"&gt;&amp;#39;X-Accel-Redirect&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;/protected/{}&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;file&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="p"&gt;})&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;</content></entry><entry><title>Emacs with Jetbrain IDE</title><link href="https://htwenning.github.io/emacs-with-jetbrain-ide.html" rel="alternate"></link><published>2018-08-21T00:00:00+08:00</published><updated>2018-08-21T00:00:00+08:00</updated><author><name>wenning</name></author><id>tag:htwenning.github.io,2018-08-21:/emacs-with-jetbrain-ide.html</id><summary type="html">&lt;h1&gt;Emacs with Jetbrain IDE&lt;/h1&gt;
 &lt;p&gt;为了启动的效率， 使用c/s形式的emacs；
 推荐一个配置：https://korewanetadesu.com/emacs-on-os-x.html
 下面摘抄一下&lt;/p&gt;

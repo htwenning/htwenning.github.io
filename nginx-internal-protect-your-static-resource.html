@@ -11,19 +11,61 @@
 
 <body>
     <section id ="posts">
-        <h1><a href="/"><strong>wenning's blog</strong></a></h1>
-<h1>Archives for wenning's blog</h1>
+<div class="navigation-container">
+    <span id="home-link">
+        <a href="/">Home</a>
+    </span>
+</div>
+<section id="content" class="body">
+  <header>
+    <h2 class="entry-title">
+      <a href="#" rel="bookmark"
+         title="Permalink to Nginx Internal (protect your static resource)">Nginx Internal (protect your static resource)</a></h2>
+ 
+  </header>
+  <footer class="post-info">
+    <time class="published" datetime="2018-08-31T00:00:00+08:00">
+      Fri 31 August 2018
+    </time>
+    <address class="vcard author">
+      By           <a class="url fn" href="https://htwenning.github.io/author/wenning.html">wenning</a>
+    </address>
+  </footer><!-- /.post-info -->
+  <div class="entry-content">
+    <h1>Nginx Internal (protect your static resource)</h1>
+<ol>
+<li>
+<p>nginx internal
+在location中使用internal标志，限制当前location仅对内部访问</p>
+</li>
+<li>
+<p>在服务端的response headers中添加x-accel头，并指向internal位置， nginx会访问指定位置
+官方文档：https://www.nginx.com/resources/wiki/start/topics/examples/x-accel/</p>
+</li>
+</ol>
+<p>nginx配置实例：</p>
+<div class="highlight"><pre><span></span><span class="k">server</span> <span class="p">{</span>
+    <span class="kn">listen</span>       <span class="mi">5000</span><span class="p">;</span>
+    <span class="kn">location</span> <span class="s">/protected</span> <span class="p">{</span>
+        <span class="kn">internal</span><span class="p">;</span>
+        <span class="kn">alias</span> <span class="s">/Users/wenning/protected</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="kn">location</span> <span class="s">/doc</span> <span class="p">{</span>
+        <span class="kn">proxy_pass</span> <span class="s">http://localhost:8888</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
 
-<dl>
-    <dt>Fri 31 August 2018</dt>
-    <dd><a href="https://htwenning.github.io/nginx-internal-protect-your-static-resource.html">Nginx Internal (protect your static resource)</a></dd>
-    <dt>Tue 21 August 2018</dt>
-    <dd><a href="https://htwenning.github.io/emacs-with-jetbrain-ide.html">Emacs with Jetbrain IDE</a></dd>
-    <dt>Thu 12 July 2018</dt>
-    <dd><a href="https://htwenning.github.io/a-little-docker-compose.html">a little docker-compose</a></dd>
-    <dt>Wed 11 July 2018</dt>
-    <dd><a href="https://htwenning.github.io/a-little-awk.html">a little awk</a></dd>
-</dl>
+
+<p>python服务端实例， 这里以sanic为例：</p>
+<div class="highlight"><pre><span></span><span class="nd">@app.route</span><span class="p">(</span><span class="s2">&quot;/doc/&lt;file&gt;&quot;</span><span class="p">)</span>
+<span class="n">async</span> <span class="k">def</span> <span class="nf">projected</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="nb">file</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">raw</span><span class="p">(</span><span class="n">body</span><span class="o">=</span><span class="sa">b</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="p">{</span>
+        <span class="s1">&#39;X-Accel-Redirect&#39;</span><span class="p">:</span> <span class="s1">&#39;/protected/{}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">file</span><span class="p">)</span>
+    <span class="p">})</span>
+</pre></div>
+  </div><!-- /.entry-content -->
+</section>
 
         <a href="/">
           <svg id="ghost-icon" width="300" height="300" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">

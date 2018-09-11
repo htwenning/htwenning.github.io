@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>wenning's blog - Python, profile, pyflame, py-spy</title><link href="https://htwenning.github.io/" rel="alternate"></link><link href="https://htwenning.github.io/feeds/python-profile-pyflame-py-spy.atom.xml" rel="self"></link><id>https://htwenning.github.io/</id><updated>2018-09-11T00:00:00+08:00</updated><entry><title>Profile in Python</title><link href="https://htwenning.github.io/profile-in-python.html" rel="alternate"></link><published>2018-09-11T00:00:00+08:00</published><updated>2018-09-11T00:00:00+08:00</updated><author><name>wenning</name></author><id>tag:htwenning.github.io,2018-09-11:/profile-in-python.html</id><summary type="html">&lt;h1&gt;Profile in Python&lt;/h1&gt;
+&lt;p&gt;在不改变代码的情况下（比如在生产环境遇到的问题），profile python进程，曾经一个好的选择是pyflame。&lt;/p&gt;
+&lt;p&gt;现在又发现一个不错的工具： py-spy&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/uber/pyflame"&gt;pyflame&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/benfred/py-spy"&gt;py-spy&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;pyflame利用ptrace来采样函数调用，然后可以使用 flame graph打印svg显示火焰图。
+在一些相对老的系统要配置好还是挺麻烦的。&lt;/p&gt;
+&lt;p&gt;py-spy使用rust编写， 通过读进程内存来采样，可以直接使用pip安装！&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;py-spy --pid 12345&lt;/p&gt;
+&lt;p&gt;py-spy --flame profile.svg --pid 12345&lt;/p&gt;
+&lt;/blockquote&gt;</summary><content type="html">&lt;h1&gt;Profile in Python&lt;/h1&gt;
+&lt;p&gt;在不改变代码的情况下（比如在生产环境遇到的问题），profile python进程，曾经一个好的选择是pyflame。&lt;/p&gt;
+&lt;p&gt;现在又发现一个不错的工具： py-spy&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/uber/pyflame"&gt;pyflame&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/benfred/py-spy"&gt;py-spy&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;pyflame利用ptrace来采样函数调用，然后可以使用 flame graph打印svg显示火焰图。
+在一些相对老的系统要配置好还是挺麻烦的。&lt;/p&gt;
+&lt;p&gt;py-spy使用rust编写， 通过读进程内存来采样，可以直接使用pip安装！&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;py-spy --pid 12345&lt;/p&gt;
+&lt;p&gt;py-spy --flame profile.svg --pid 12345&lt;/p&gt;
+&lt;/blockquote&gt;</content></entry></feed>

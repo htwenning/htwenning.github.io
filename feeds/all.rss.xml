@@ -1,5 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0"><channel><title>wenning's blog</title><link>https://htwenning.github.io/</link><description></description><lastBuildDate>Fri, 31 Aug 2018 00:00:00 +0800</lastBuildDate><item><title>Nginx Internal (protect your static resource)</title><link>https://htwenning.github.io/nginx-internal-protect-your-static-resource.html</link><description>&lt;h1&gt;Nginx Internal (protect your static resource)&lt;/h1&gt;
+<rss version="2.0"><channel><title>wenning's blog</title><link>https://htwenning.github.io/</link><description></description><lastBuildDate>Tue, 11 Sep 2018 00:00:00 +0800</lastBuildDate><item><title>Profile in Python</title><link>https://htwenning.github.io/profile-in-python.html</link><description>&lt;h1&gt;Profile in Python&lt;/h1&gt;
+&lt;p&gt;在不改变代码的情况下（比如在生产环境遇到的问题），profile python进程，曾经一个好的选择是pyflame。&lt;/p&gt;
+&lt;p&gt;现在又发现一个不错的工具： py-spy&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/uber/pyflame"&gt;pyflame&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/benfred/py-spy"&gt;py-spy&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;pyflame利用ptrace来采样函数调用，然后可以使用 flame graph打印svg显示火焰图。
+在一些相对老的系统要配置好还是挺麻烦的。&lt;/p&gt;
+&lt;p&gt;py-spy使用rust编写， 通过读进程内存来采样，可以直接使用pip安装！&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;py-spy --pid 12345&lt;/p&gt;
+&lt;p&gt;py-spy --flame profile.svg --pid 12345&lt;/p&gt;
+&lt;/blockquote&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">wenning</dc:creator><pubDate>Tue, 11 Sep 2018 00:00:00 +0800</pubDate><guid isPermaLink="false">tag:htwenning.github.io,2018-09-11:/profile-in-python.html</guid></item><item><title>Nginx Internal (protect your static resource)</title><link>https://htwenning.github.io/nginx-internal-protect-your-static-resource.html</link><description>&lt;h1&gt;Nginx Internal (protect your static resource)&lt;/h1&gt;
 &lt;ol&gt;
 &lt;li&gt;
 &lt;p&gt;nginx internal

@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0"><channel><title>wenning's blog</title><link>https://htwenning.github.io/</link><description></description><lastBuildDate>Tue, 11 Sep 2018 00:00:00 +0800</lastBuildDate><item><title>Profile in Python</title><link>https://htwenning.github.io/profile-in-python.html</link><description>&lt;h1&gt;Profile in Python&lt;/h1&gt;
+<rss version="2.0"><channel><title>wenning's blog</title><link>https://htwenning.github.io/</link><description></description><lastBuildDate>Sat, 29 Sep 2018 00:00:00 +0800</lastBuildDate><item><title>Install Xposed on AVD</title><link>https://htwenning.github.io/install-xposed-on-avd.html</link><description>&lt;h1&gt;Install Xposed on AVD&lt;/h1&gt;
+&lt;p&gt;在avd上获取root权限，安装xposed framework&lt;/p&gt;
+&lt;h3&gt;模拟器准备工作：&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;./sdkmanager "system-images;android-22;google_apis;x86"&lt;/li&gt;
+&lt;li&gt;./avdmanager create avd -n test -k "system-images;android-22;google_apis;x86" 安装后发现没有挂载sdcard， 后来在android studio中修改上了&lt;/li&gt;
+&lt;li&gt;cp ~/Library/Android/sdk/system-images/android-22/google_apis/x86/system.img ~/.android/avd/test.avd/system-qemu.img 拷贝之后，模拟器对system的修改就会被保存下载&lt;/li&gt;
+&lt;li&gt;./emulator -avd test -port 5557 -writable-system …&lt;/li&gt;&lt;/ul&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">wenning</dc:creator><pubDate>Sat, 29 Sep 2018 00:00:00 +0800</pubDate><guid isPermaLink="false">tag:htwenning.github.io,2018-09-29:/install-xposed-on-avd.html</guid></item><item><title>Profile in Python</title><link>https://htwenning.github.io/profile-in-python.html</link><description>&lt;h1&gt;Profile in Python&lt;/h1&gt;
 &lt;p&gt;在不改变代码的情况下（比如在生产环境遇到的问题），profile python进程，曾经一个好的选择是pyflame。&lt;/p&gt;
 &lt;p&gt;现在又发现一个不错的工具： py-spy&lt;/p&gt;
 &lt;ul&gt;

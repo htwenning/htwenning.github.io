@@ -27,4 +27,8 @@
 &lt;li&gt;in emulator, open opensu and update bin, click normal button; reboot&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3&gt;安装xposed：&lt;/h3&gt;
-&lt;p&gt;下载xpose installer.apk， 在app中操作即可。&lt;/p&gt;</content></entry></feed>
+&lt;p&gt;下载xpose installer.apk， 在app中操作即可。&lt;/p&gt;
+&lt;h3&gt;已知问题：&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href="https://github.com/htwenning/htwenning.github.io/issues/3"&gt;xpose-installer 下载框架的时候闪退&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;</content></entry></feed>

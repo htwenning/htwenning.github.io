@@ -40,7 +40,8 @@
 <p>docker-compose run service_name</p>
 <p>--rm参数可以在退出的时候删除这个container</p>
 <p><strong>例子：</strong></p>
-<p>在项目下面创建 docker-compose.yml, 内容如下</p>
+<p>在项目下面创建 docker-compose.yml, 内容如下
+（cap_add和secutiry_opt用来保证container中可以正常使用gdb）</p>
 <div class="highlight"><pre><span></span>version: &#39;3&#39;
 services:
   app:
@@ -51,6 +52,8 @@ services:
       - &quot;5000:5000&quot;
     cap_add:
       - ALL
+    security_opt:
+      - seccomp:unconfined
     command: bash
 </pre></div>
 
@@ -60,14 +63,23 @@ services:
 <p>docker-compose run app</p>
 </blockquote>
 <p>如果上面指定了ports那么需要带上 --service-ports 参数才能把服务的ports暴露给host</p>
-<p>退出后container stop，通过docker ps -a 查看container_id, 后面再启动：</p>
 <blockquote>
-<p>docker start [container_id]; docker attach [container_id]</p>
+<p>docker-compose run --service-ports app</p>
+</blockquote>
+<p>退出后container也就挂掉了，通过docker ps -a 查看container_id, 后面再启动：</p>
+<blockquote>
+<p>docker start [container_id]</p>
+<p>docker attach [container_id]</p>
+</blockquote>
+<p>或者执行一个新的bash命令</p>
+<blockquote>
+<p>docker exec -it [container_id] bash</p>
 </blockquote>
 <p>tips：</p>
 <ul>
 <li>根据需要可以commit镜像</li>
 <li>可以写Dockerfile和更多的service, 利用docker-compose up启动</li>
+<li>docker-compose up用来启动一堆服务，没有交互式的概念</li>
 </ul>
 <p><strong>参考：</strong></p>
 <ul>

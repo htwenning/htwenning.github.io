@@ -4,7 +4,8 @@
 &lt;p&gt;docker-compose run service_name&lt;/p&gt;
 &lt;p&gt;--rm参数可以在退出的时候删除这个container&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;例子：&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;在项目下面创建 docker-compose.yml, 内容如下&lt;/p&gt;
+&lt;p&gt;在项目下面创建 docker-compose.yml, 内容如下
+（cap_add和secutiry_opt用来保证container中可以正常使用gdb）&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;version: &amp;#39;3&amp;#39;
 services:
   app:
@@ -15,6 +16,8 @@ services:
       - &amp;quot;5000:5000&amp;quot;
     cap_add:
       - ALL
+    security_opt:
+      - seccomp:unconfined
     command: bash
 &lt;/pre&gt;&lt;/div&gt;
 
@@ -24,14 +27,16 @@ services:
 &lt;p&gt;docker-compose run app&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;如果上面指定了ports那么需要带上 --service-ports 参数才能把服务的ports暴露给host&lt;/p&gt;
-&lt;p&gt;退出后container stop，通过docker ps -a 查看container_id, 后面再启动：&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;docker start [container_id]; docker …&lt;/p&gt;&lt;/blockquote&gt;</summary><content type="html">&lt;h1&gt;a little docker-compose&lt;/h1&gt;
+&lt;p&gt;docker-compose run --service-ports app&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;退出后container也就挂掉了，通过docker ps …&lt;/p&gt;</summary><content type="html">&lt;h1&gt;a little docker-compose&lt;/h1&gt;
 &lt;p&gt;docker-compose 可以快速给一个临时的linux开发环境&lt;/p&gt;
 &lt;p&gt;docker-compose run service_name&lt;/p&gt;
 &lt;p&gt;--rm参数可以在退出的时候删除这个container&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;例子：&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;在项目下面创建 docker-compose.yml, 内容如下&lt;/p&gt;
+&lt;p&gt;在项目下面创建 docker-compose.yml, 内容如下
+（cap_add和secutiry_opt用来保证container中可以正常使用gdb）&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;version: &amp;#39;3&amp;#39;
 services:
   app:
@@ -42,6 +47,8 @@ services:
       - &amp;quot;5000:5000&amp;quot;
     cap_add:
       - ALL
+    security_opt:
+      - seccomp:unconfined
     command: bash
 &lt;/pre&gt;&lt;/div&gt;
 
@@ -51,14 +58,23 @@ services:
 &lt;p&gt;docker-compose run app&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;如果上面指定了ports那么需要带上 --service-ports 参数才能把服务的ports暴露给host&lt;/p&gt;
-&lt;p&gt;退出后container stop，通过docker ps -a 查看container_id, 后面再启动：&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;docker start [container_id]; docker attach [container_id]&lt;/p&gt;
+&lt;p&gt;docker-compose run --service-ports app&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;退出后container也就挂掉了，通过docker ps -a 查看container_id, 后面再启动：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;docker start [container_id]&lt;/p&gt;
+&lt;p&gt;docker attach [container_id]&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;或者执行一个新的bash命令&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;docker exec -it [container_id] bash&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;tips：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;根据需要可以commit镜像&lt;/li&gt;
 &lt;li&gt;可以写Dockerfile和更多的service, 利用docker-compose up启动&lt;/li&gt;
+&lt;li&gt;docker-compose up用来启动一堆服务，没有交互式的概念&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;strong&gt;参考：&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;

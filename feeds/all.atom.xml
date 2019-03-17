@@ -242,11 +242,10 @@ services:
 &lt;blockquote&gt;
 &lt;p&gt;docker-compose run app&lt;/p&gt;
 &lt;/blockquote&gt;
+&lt;p&gt;如果上面指定了ports那么需要带上 --service-ports 参数才能把服务的ports暴露给host&lt;/p&gt;
 &lt;p&gt;退出后container stop，通过docker ps -a 查看container_id, 后面再启动：&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;docker start [container_id]; docker attach [container_id]&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;tips …&lt;/p&gt;</summary><content type="html">&lt;h1&gt;a little docker-compose&lt;/h1&gt;
+&lt;p&gt;docker start [container_id]; docker …&lt;/p&gt;&lt;/blockquote&gt;</summary><content type="html">&lt;h1&gt;a little docker-compose&lt;/h1&gt;
 &lt;p&gt;docker-compose 可以快速给一个临时的linux开发环境&lt;/p&gt;
 &lt;p&gt;docker-compose run service_name&lt;/p&gt;
 &lt;p&gt;--rm参数可以在退出的时候删除这个container&lt;/p&gt;
@@ -270,6 +269,7 @@ services:
 &lt;blockquote&gt;
 &lt;p&gt;docker-compose run app&lt;/p&gt;
 &lt;/blockquote&gt;
+&lt;p&gt;如果上面指定了ports那么需要带上 --service-ports 参数才能把服务的ports暴露给host&lt;/p&gt;
 &lt;p&gt;退出后container stop，通过docker ps -a 查看container_id, 后面再启动：&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;docker start [container_id]; docker attach [container_id]&lt;/p&gt;

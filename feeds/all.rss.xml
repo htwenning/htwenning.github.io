@@ -85,11 +85,10 @@ services:
 &lt;blockquote&gt;
 &lt;p&gt;docker-compose run app&lt;/p&gt;
 &lt;/blockquote&gt;
+&lt;p&gt;如果上面指定了ports那么需要带上 --service-ports 参数才能把服务的ports暴露给host&lt;/p&gt;
 &lt;p&gt;退出后container stop，通过docker ps -a 查看container_id, 后面再启动：&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;docker start [container_id]; docker attach [container_id]&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;tips …&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">wenning</dc:creator><pubDate>Thu, 12 Jul 2018 00:00:00 +0800</pubDate><guid isPermaLink="false">tag:htwenning.github.io,2018-07-12:/a-little-docker-compose.html</guid></item><item><title>a little awk</title><link>https://htwenning.github.io/a-little-awk.html</link><description>&lt;h1&gt;a little awk&lt;/h1&gt;
+&lt;p&gt;docker start [container_id]; docker …&lt;/p&gt;&lt;/blockquote&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">wenning</dc:creator><pubDate>Thu, 12 Jul 2018 00:00:00 +0800</pubDate><guid isPermaLink="false">tag:htwenning.github.io,2018-07-12:/a-little-docker-compose.html</guid></item><item><title>a little awk</title><link>https://htwenning.github.io/a-little-awk.html</link><description>&lt;h1&gt;a little awk&lt;/h1&gt;
 &lt;p&gt;参考:
 https://gregable.com/2010/09/why-you-should-know-just-little-awk.html&lt;/p&gt;
 &lt;ul&gt;

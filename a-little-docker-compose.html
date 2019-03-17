@@ -59,6 +59,7 @@ services:
 <blockquote>
 <p>docker-compose run app</p>
 </blockquote>
+<p>如果上面指定了ports那么需要带上 --service-ports 参数才能把服务的ports暴露给host</p>
 <p>退出后container stop，通过docker ps -a 查看container_id, 后面再启动：</p>
 <blockquote>
 <p>docker start [container_id]; docker attach [container_id]</p>

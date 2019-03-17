@@ -221,7 +221,7 @@
 &lt;p&gt;这样可以直接使用emacsclient打开当前的文件&lt;/p&gt;</content></entry><entry><title>a little docker-compose</title><link href="https://htwenning.github.io/a-little-docker-compose.html" rel="alternate"></link><published>2018-07-12T00:00:00+08:00</published><updated>2018-07-12T00:00:00+08:00</updated><author><name>wenning</name></author><id>tag:htwenning.github.io,2018-07-12:/a-little-docker-compose.html</id><summary type="html">&lt;h1&gt;a little docker-compose&lt;/h1&gt;
 &lt;p&gt;docker-compose 可以快速给一个临时的linux开发环境&lt;/p&gt;
 &lt;p&gt;docker-compose run service_name&lt;/p&gt;
-&lt;p&gt;--rm参数可以在推出的时候删除这个container&lt;/p&gt;
+&lt;p&gt;--rm参数可以在退出的时候删除这个container&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;例子：&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;在项目下面创建 docker-compose.yml, 内容如下&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;version: &amp;#39;3&amp;#39;
@@ -230,6 +230,10 @@ services:
     image: &amp;quot;python:3.6&amp;quot;
     volumes:
       - .:/app
+    ports:
+      - &amp;quot;5000:5000&amp;quot;
+    cap_add:
+      - ALL
     command: bash
 &lt;/pre&gt;&lt;/div&gt;
 
@@ -238,19 +242,14 @@ services:
 &lt;blockquote&gt;
 &lt;p&gt;docker-compose run app&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;推出后container stop，通过docker ps -a 查看container_id, 后面再启动：&lt;/p&gt;
+&lt;p&gt;退出后container stop，通过docker ps -a 查看container_id, 后面再启动：&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;docker start [container_id]; docker attach [container_id]&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;tips：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;根据需要可以commit镜像&lt;/li&gt;
-&lt;li&gt;可以写Dockerfile和更多的service, 利用docker-compose up启动&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;参考 …&lt;/strong&gt;&lt;/p&gt;</summary><content type="html">&lt;h1&gt;a little docker-compose&lt;/h1&gt;
+&lt;p&gt;tips …&lt;/p&gt;</summary><content type="html">&lt;h1&gt;a little docker-compose&lt;/h1&gt;
 &lt;p&gt;docker-compose 可以快速给一个临时的linux开发环境&lt;/p&gt;
 &lt;p&gt;docker-compose run service_name&lt;/p&gt;
-&lt;p&gt;--rm参数可以在推出的时候删除这个container&lt;/p&gt;
+&lt;p&gt;--rm参数可以在退出的时候删除这个container&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;例子：&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;在项目下面创建 docker-compose.yml, 内容如下&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;version: &amp;#39;3&amp;#39;
@@ -259,6 +258,10 @@ services:
     image: &amp;quot;python:3.6&amp;quot;
     volumes:
       - .:/app
+    ports:
+      - &amp;quot;5000:5000&amp;quot;
+    cap_add:
+      - ALL
     command: bash
 &lt;/pre&gt;&lt;/div&gt;
 
@@ -267,7 +270,7 @@ services:
 &lt;blockquote&gt;
 &lt;p&gt;docker-compose run app&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;推出后container stop，通过docker ps -a 查看container_id, 后面再启动：&lt;/p&gt;
+&lt;p&gt;退出后container stop，通过docker ps -a 查看container_id, 后面再启动：&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;docker start [container_id]; docker attach [container_id]&lt;/p&gt;
 &lt;/blockquote&gt;

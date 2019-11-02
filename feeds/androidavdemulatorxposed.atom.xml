@@ -23,7 +23,7 @@
 &lt;li&gt;adb root; adb remount&lt;/li&gt;
 &lt;li&gt;cd flashable/your_emu_arch/; adb push su.pie /system/bin/su&lt;/li&gt;
 &lt;li&gt;adb shell; su root; chmod 06755 /system/bin/su&lt;/li&gt;
-&lt;li&gt;su --install; su --daemon&amp;; setenforce 0&lt;/li&gt;
+&lt;li&gt;su --install; su --daemon&amp;amp;; setenforce 0&lt;/li&gt;
 &lt;li&gt;in emulator, open opensu and update bin, click normal button; reboot&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3&gt;安装xposed：&lt;/h3&gt;
@@ -31,4 +31,4 @@
 &lt;h3&gt;已知问题：&lt;/h3&gt;
 &lt;ol&gt;
 &lt;li&gt;&lt;a href="https://github.com/htwenning/htwenning.github.io/issues/3"&gt;xpose-installer 下载框架的时候闪退&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;</content></entry></feed>
+&lt;/ol&gt;</content><category term="Android,AVD,emulator,Xposed"></category></entry></feed>

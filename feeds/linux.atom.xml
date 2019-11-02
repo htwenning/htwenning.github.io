@@ -30,4 +30,4 @@ https://gregable.com/2010/09/why-you-should-know-just-little-awk.html&lt;/p&gt;
 docker images &lt;span class="p"&gt;|&lt;/span&gt; awk &lt;span class="s1"&gt;&amp;#39;{if($1 == &amp;quot;&amp;lt;none&amp;gt;&amp;quot;){print $3}}&amp;#39;&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; xargs docker rmi
 docker images &lt;span class="p"&gt;|&lt;/span&gt; awk &lt;span class="s1"&gt;&amp;#39;{print &amp;quot;tag: &amp;quot;, $2}&amp;#39;&lt;/span&gt;
 docker images &lt;span class="p"&gt;|&lt;/span&gt; awk &lt;span class="s1"&gt;&amp;#39;{a += $NF; print &amp;quot;total: &amp;quot;, a}&amp;#39;&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;</content></entry></feed>
+&lt;/pre&gt;&lt;/div&gt;</content><category term="Linux"></category></entry></feed>

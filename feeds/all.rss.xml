@@ -6,7 +6,7 @@
 &lt;li&gt;./sdkmanager "system-images;android-22;google_apis;x86"&lt;/li&gt;
 &lt;li&gt;./avdmanager create avd -n test -k "system-images;android-22;google_apis;x86" 安装后发现没有挂载sdcard， 后来在android studio中修改上了&lt;/li&gt;
 &lt;li&gt;cp ~/Library/Android/sdk/system-images/android-22/google_apis/x86/system.img ~/.android/avd/test.avd/system-qemu.img 拷贝之后，模拟器对system的修改就会被保存下载&lt;/li&gt;
-&lt;li&gt;./emulator -avd test -port 5557 -writable-system …&lt;/li&gt;&lt;/ul&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">wenning</dc:creator><pubDate>Sat, 29 Sep 2018 00:00:00 +0800</pubDate><guid isPermaLink="false">tag:htwenning.github.io,2018-09-29:/install-xposed-on-avd.html</guid></item><item><title>Profile in Python</title><link>https://htwenning.github.io/profile-in-python.html</link><description>&lt;h1&gt;Profile in Python&lt;/h1&gt;
+&lt;li&gt;./emulator -avd test -port 5557 -writable-system …&lt;/li&gt;&lt;/ul&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">wenning</dc:creator><pubDate>Sat, 29 Sep 2018 00:00:00 +0800</pubDate><guid isPermaLink="false">tag:htwenning.github.io,2018-09-29:/install-xposed-on-avd.html</guid><category>Android,AVD,emulator,Xposed</category></item><item><title>Profile in Python</title><link>https://htwenning.github.io/profile-in-python.html</link><description>&lt;h1&gt;Profile in Python&lt;/h1&gt;
 &lt;p&gt;在不改变代码的情况下（比如在生产环境遇到的问题），profile python进程，曾经一个好的选择是pyflame。&lt;/p&gt;
 &lt;p&gt;现在又发现一个不错的工具： py-spy&lt;/p&gt;
 &lt;ul&gt;
@@ -19,7 +19,7 @@
 &lt;blockquote&gt;
 &lt;p&gt;py-spy --pid 12345&lt;/p&gt;
 &lt;p&gt;py-spy --flame profile.svg --pid 12345&lt;/p&gt;
-&lt;/blockquote&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">wenning</dc:creator><pubDate>Tue, 11 Sep 2018 00:00:00 +0800</pubDate><guid isPermaLink="false">tag:htwenning.github.io,2018-09-11:/profile-in-python.html</guid></item><item><title>Nginx Internal (protect your static resource)</title><link>https://htwenning.github.io/nginx-internal-protect-your-static-resource.html</link><description>&lt;h1&gt;Nginx Internal (protect your static resource)&lt;/h1&gt;
+&lt;/blockquote&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">wenning</dc:creator><pubDate>Tue, 11 Sep 2018 00:00:00 +0800</pubDate><guid isPermaLink="false">tag:htwenning.github.io,2018-09-11:/profile-in-python.html</guid><category>Python, profile, pyflame, py-spy</category></item><item><title>Nginx Internal (protect your static resource)</title><link>https://htwenning.github.io/nginx-internal-protect-your-static-resource.html</link><description>&lt;h1&gt;Nginx Internal (protect your static resource)&lt;/h1&gt;
 &lt;ol&gt;
 &lt;li&gt;
 &lt;p&gt;nginx internal
@@ -46,7 +46,7 @@
 
 &lt;p&gt;python服务端实例， 这里以sanic为例：&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nd"&gt;@app.route&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;/doc/&amp;lt;file&amp;gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;async&lt;/span&gt; &lt;span class="k"&gt;def …&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">wenning</dc:creator><pubDate>Fri, 31 Aug 2018 00:00:00 +0800</pubDate><guid isPermaLink="false">tag:htwenning.github.io,2018-08-31:/nginx-internal-protect-your-static-resource.html</guid></item><item><title>Emacs with Jetbrain IDE</title><link>https://htwenning.github.io/emacs-with-jetbrain-ide.html</link><description>&lt;h1&gt;Emacs with Jetbrain IDE&lt;/h1&gt;
+&lt;span class="n"&gt;async&lt;/span&gt; &lt;span class="k"&gt;def …&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">wenning</dc:creator><pubDate>Fri, 31 Aug 2018 00:00:00 +0800</pubDate><guid isPermaLink="false">tag:htwenning.github.io,2018-08-31:/nginx-internal-protect-your-static-resource.html</guid><category>Nginx, python</category></item><item><title>Emacs with Jetbrain IDE</title><link>https://htwenning.github.io/emacs-with-jetbrain-ide.html</link><description>&lt;h1&gt;Emacs with Jetbrain IDE&lt;/h1&gt;
 &lt;p&gt;为了启动的效率， 使用c/s形式的emacs；
 推荐一个配置：https://korewanetadesu.com/emacs-on-os-x.html
 下面摘抄一下&lt;/p&gt;
@@ -61,26 +61,26 @@
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;tell&lt;/span&gt; &lt;span class="nb"&gt;application&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Terminal&amp;quot;&lt;/span&gt;
     &lt;span class="k"&gt;try&lt;/span&gt;
         &lt;span class="nb"&gt;do shell script&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;/Applications/Emacs.app/Contents/MacOS/bin/emacsclient -c -n &amp;amp;&amp;quot;&lt;/span&gt;
-        &lt;span class="k"&gt;tell …&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">wenning</dc:creator><pubDate>Tue, 21 Aug 2018 00:00:00 +0800</pubDate><guid isPermaLink="false">tag:htwenning.github.io,2018-08-21:/emacs-with-jetbrain-ide.html</guid></item><item><title>a little docker-compose</title><link>https://htwenning.github.io/a-little-docker-compose.html</link><description>&lt;h1&gt;a little docker-compose&lt;/h1&gt;
+        &lt;span class="k"&gt;tell …&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">wenning</dc:creator><pubDate>Tue, 21 Aug 2018 00:00:00 +0800</pubDate><guid isPermaLink="false">tag:htwenning.github.io,2018-08-21:/emacs-with-jetbrain-ide.html</guid><category>Emacs, Jetbrain, macos</category></item><item><title>a little docker-compose</title><link>https://htwenning.github.io/a-little-docker-compose.html</link><description>&lt;h1&gt;a little docker-compose&lt;/h1&gt;
 &lt;p&gt;docker-compose 可以快速给一个临时的linux开发环境&lt;/p&gt;
 &lt;p&gt;docker-compose run service_name&lt;/p&gt;
 &lt;p&gt;--rm参数可以在退出的时候删除这个container&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;例子：&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;在项目下面创建 docker-compose.yml, 内容如下
 （cap_add和secutiry_opt用来保证container中可以正常使用gdb）&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;version: &amp;#39;3&amp;#39;
-services:
-  app:
-    image: &amp;quot;python:3.6&amp;quot;
-    volumes:
-      - .:/app
-    ports:
-      - &amp;quot;5000:5000&amp;quot;
-    cap_add:
-      - ALL
-    security_opt:
-      - seccomp:unconfined
-    command: bash
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;version&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;3&amp;#39;&lt;/span&gt;
+&lt;span class="n"&gt;services&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+  &lt;span class="n"&gt;app&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;image&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="ss"&gt;&amp;quot;python:3.6&amp;quot;&lt;/span&gt;
+    &lt;span class="n"&gt;volumes&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+      &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="p"&gt;.:&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;app&lt;/span&gt;
+    &lt;span class="n"&gt;ports&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+      &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="ss"&gt;&amp;quot;5000:5000&amp;quot;&lt;/span&gt;
+    &lt;span class="n"&gt;cap_add&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+      &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="k"&gt;ALL&lt;/span&gt;
+    &lt;span class="n"&gt;security_opt&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+      &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;seccomp&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;unconfined&lt;/span&gt;
+    &lt;span class="n"&gt;command&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;bash&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -92,7 +92,7 @@ services:
 &lt;blockquote&gt;
 &lt;p&gt;docker-compose run --service-ports app&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;退出后container也就挂掉了，通过docker ps …&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">wenning</dc:creator><pubDate>Thu, 12 Jul 2018 00:00:00 +0800</pubDate><guid isPermaLink="false">tag:htwenning.github.io,2018-07-12:/a-little-docker-compose.html</guid></item><item><title>a little awk</title><link>https://htwenning.github.io/a-little-awk.html</link><description>&lt;h1&gt;a little awk&lt;/h1&gt;
+&lt;p&gt;退出后container也就挂掉了，通过docker ps …&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">wenning</dc:creator><pubDate>Thu, 12 Jul 2018 00:00:00 +0800</pubDate><guid isPermaLink="false">tag:htwenning.github.io,2018-07-12:/a-little-docker-compose.html</guid><category>Linux, Docker</category></item><item><title>a little awk</title><link>https://htwenning.github.io/a-little-awk.html</link><description>&lt;h1&gt;a little awk&lt;/h1&gt;
 &lt;p&gt;参考:
 https://gregable.com/2010/09/why-you-should-know-just-little-awk.html&lt;/p&gt;
 &lt;ul&gt;
@@ -107,4 +107,4 @@ https://gregable.com/2010/09/why-you-should-know-just-little-awk.html&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;docker images &lt;span class="p"&gt;|&lt;/span&gt; awk &lt;span class="s1"&gt;&amp;#39;{print $1}&amp;#39;&lt;/span&gt;
 docker images &lt;span class="p"&gt;|&lt;/span&gt; awk &lt;span class="s1"&gt;&amp;#39;{if($1 == &amp;quot;&amp;lt;none&amp;gt;&amp;quot;){print $3}}&amp;#39;&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; xargs docker rmi
 docker images &lt;span class="p"&gt;|&lt;/span&gt; awk &lt;span class="s1"&gt;&amp;#39;{print &amp;quot;tag: &amp;quot;, $2}&amp;#39;&lt;/span&gt;
-docker images &lt;span class="p"&gt;|&lt;/span&gt; awk &lt;span class="s1"&gt;&amp;#39;{a += $NF …&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">wenning</dc:creator><pubDate>Wed, 11 Jul 2018 18:28:00 +0800</pubDate><guid isPermaLink="false">tag:htwenning.github.io,2018-07-11:/a-little-awk.html</guid></item></channel></rss>
+docker images &lt;span class="p"&gt;|&lt;/span&gt; awk &lt;span class="s1"&gt;&amp;#39;{a += $NF …&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">wenning</dc:creator><pubDate>Wed, 11 Jul 2018 18:28:00 +0800</pubDate><guid isPermaLink="false">tag:htwenning.github.io,2018-07-11:/a-little-awk.html</guid><category>Linux</category></item></channel></rss>

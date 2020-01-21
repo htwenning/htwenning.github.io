@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0"><channel><title>wenning's blog</title><link>https://htwenning.github.io/</link><description></description><lastBuildDate>Sat, 29 Sep 2018 00:00:00 +0800</lastBuildDate><item><title>Install Xposed on AVD</title><link>https://htwenning.github.io/install-xposed-on-avd.html</link><description>&lt;h1&gt;Install Xposed on AVD&lt;/h1&gt;
+<rss version="2.0"><channel><title>wenning's blog</title><link>https://htwenning.github.io/</link><description></description><lastBuildDate>Tue, 21 Jan 2020 00:00:00 +0800</lastBuildDate><item><title>Async in Python and Javascript</title><link>https://htwenning.github.io/async-in-python-and-javascript.html</link><description>&lt;h1&gt;Async in Python and Javascript&lt;/h1&gt;
+&lt;p&gt;&lt;a href="https://docs.djangoproject.com/en/3.0/releases/3.0/"&gt;Django 3.0&lt;/a&gt;于2019-12-2日发布，一个新功能是支持了ASGI&lt;/p&gt;
+&lt;p&gt;Darphne是目前一个支持ASGI的服务器，但是我在&lt;a href="https://github.com/django/channels/tree/master/loadtesting/2016-09-06"&gt;Channels&lt;/a&gt; 里面的benchmark看到:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Daphne is not as efficient as its WSGI counterpart. When considering only latency, Daphne can have 10 times the latency when under the same traffic load as gunincorn. When considering only throughput, Daphne can have 40-50 …&lt;/p&gt;&lt;/blockquote&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">wenning</dc:creator><pubDate>Tue, 21 Jan 2020 00:00:00 +0800</pubDate><guid isPermaLink="false">tag:htwenning.github.io,2020-01-21:/async-in-python-and-javascript.html</guid><category>Async, Python, Javascript</category></item><item><title>Install Xposed on AVD</title><link>https://htwenning.github.io/install-xposed-on-avd.html</link><description>&lt;h1&gt;Install Xposed on AVD&lt;/h1&gt;
 &lt;p&gt;在avd上获取root权限，安装xposed framework&lt;/p&gt;
 &lt;h3&gt;模拟器准备工作：&lt;/h3&gt;
 &lt;ul&gt;

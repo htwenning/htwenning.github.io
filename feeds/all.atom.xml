@@ -1,5 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>wenning's blog</title><link href="https://htwenning.github.io/" rel="alternate"></link><link href="https://htwenning.github.io/feeds/all.atom.xml" rel="self"></link><id>https://htwenning.github.io/</id><updated>2018-09-29T00:00:00+08:00</updated><entry><title>Install Xposed on AVD</title><link href="https://htwenning.github.io/install-xposed-on-avd.html" rel="alternate"></link><published>2018-09-29T00:00:00+08:00</published><updated>2018-09-29T00:00:00+08:00</updated><author><name>wenning</name></author><id>tag:htwenning.github.io,2018-09-29:/install-xposed-on-avd.html</id><summary type="html">&lt;h1&gt;Install Xposed on AVD&lt;/h1&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>wenning's blog</title><link href="https://htwenning.github.io/" rel="alternate"></link><link href="https://htwenning.github.io/feeds/all.atom.xml" rel="self"></link><id>https://htwenning.github.io/</id><updated>2020-01-21T00:00:00+08:00</updated><entry><title>Async in Python and Javascript</title><link href="https://htwenning.github.io/async-in-python-and-javascript.html" rel="alternate"></link><published>2020-01-21T00:00:00+08:00</published><updated>2020-01-21T00:00:00+08:00</updated><author><name>wenning</name></author><id>tag:htwenning.github.io,2020-01-21:/async-in-python-and-javascript.html</id><summary type="html">&lt;h1&gt;Async in Python and Javascript&lt;/h1&gt;
+&lt;p&gt;&lt;a href="https://docs.djangoproject.com/en/3.0/releases/3.0/"&gt;Django 3.0&lt;/a&gt;于2019-12-2日发布，一个新功能是支持了ASGI&lt;/p&gt;
+&lt;p&gt;Darphne是目前一个支持ASGI的服务器，但是我在&lt;a href="https://github.com/django/channels/tree/master/loadtesting/2016-09-06"&gt;Channels&lt;/a&gt; 里面的benchmark看到:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Daphne is not as efficient as its WSGI counterpart. When considering only latency, Daphne can have 10 times the latency when under the same traffic load as gunincorn. When considering only throughput, Daphne can have 40-50 …&lt;/p&gt;&lt;/blockquote&gt;</summary><content type="html">&lt;h1&gt;Async in Python and Javascript&lt;/h1&gt;
+&lt;p&gt;&lt;a href="https://docs.djangoproject.com/en/3.0/releases/3.0/"&gt;Django 3.0&lt;/a&gt;于2019-12-2日发布，一个新功能是支持了ASGI&lt;/p&gt;
+&lt;p&gt;Darphne是目前一个支持ASGI的服务器，但是我在&lt;a href="https://github.com/django/channels/tree/master/loadtesting/2016-09-06"&gt;Channels&lt;/a&gt; 里面的benchmark看到:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Daphne is not as efficient as its WSGI counterpart. When considering only latency, Daphne can have 10 times the latency when under the same traffic load as gunincorn. When considering only throughput, Daphne can have 40-50% of the total throughput of gunicorn while still being at 2 times latency.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;所以django的asgi可以期待，但是目前还不能用于产品环境。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;习惯了Django开发的，可能会对asyncio这个不太了解，但是Channels里面又提供了很多async的函数，为了方便用户开发，提供了async_to_sync方法，这样就可以在sync函数中调用async函数了。&lt;/p&gt;
+&lt;p&gt;但是在javascript里面，就算函数用async装饰了，还是可以直接像常规函数一样调用，所以他们的机制是不一样的。下面就对此做个比较。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;TL;DR&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Python使用的yield从函数内部中跳出; Javascript使用Promise。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3&gt;以async_to_sync为例&lt;/h3&gt;
+&lt;p&gt;它实际上是一个class，
+构造方法传入一个coroutine, 然后覆写了__call__方法实现:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;get or create a loop&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;python
+if not (self.main_event_loop and self.main_event_loop.is_running()):
+    loop = asyncio.new_event_loop()
+    loop_executor = ThreadPoolExecutor(max_workers=1)
+else:
+    pass&lt;/code&gt;
+- create future
+&lt;code&gt;python
+call_result = Future()&lt;/code&gt;
+- run coroutine in loop
+&lt;code&gt;python
+if new_loop:
+    loop_executor = ThreadPoolExecutor(max_workers=1)
+    loop_future = loop_executor.submit(
+        self._run_event_loop,
+        loop,
+        self.main_wrap(
+            args, kwargs, call_result, source_thread, sys.exc_info()
+        ),
+    )
+else:
+    self.main_event_loop.call_soon_threadsafe(
+        self.main_event_loop.create_task,
+        self.main_wrap(
+            args, kwargs, call_result, source_thread, sys.exc_info()
+        ),
+    )&lt;/code&gt;
+- get result
+&lt;code&gt;python
+return call_result.result()&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Javascript Promise&lt;/h3&gt;
+&lt;p&gt;Promise class构造函数接收一个function(resolve, reject)函数，
+同步的逻辑写在刚才的函数以及promise对象的then方法接收的回调中。&lt;/p&gt;
+&lt;p&gt;example：hello方法实现一些逻辑后调用resolve，并传入参数（'hello'），那么在then的回调中会以这个参数执行。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="nx"&gt;hello&lt;/span&gt;&lt;span class="p"&gt;(){&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="nb"&gt;Promise&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;resolve&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;reject&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
+        &lt;span class="nx"&gt;setTimeout&lt;/span&gt;&lt;span class="p"&gt;(()=&amp;gt;{&lt;/span&gt;
+            &lt;span class="nx"&gt;resolve&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;hello&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="p"&gt;},&lt;/span&gt; &lt;span class="mi"&gt;2000&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="p"&gt;})&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="nx"&gt;hello&lt;/span&gt;&lt;span class="p"&gt;().&lt;/span&gt;&lt;span class="nx"&gt;then&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;response&lt;/span&gt;&lt;span class="p"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;response&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;这样的好处在于可以把then串联起来，以避免过多的缩进。&lt;/p&gt;
+&lt;p&gt;async/await关键词的引入，使得写法更加简明易懂。&lt;/p&gt;
+&lt;p&gt;下面的代码和上面的等效：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="nx"&gt;sleep&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;milliseconds&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="nb"&gt;Promise&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;resolve&lt;/span&gt; &lt;span class="p"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="nx"&gt;setTimeout&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;resolve&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;milliseconds&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="nx"&gt;async&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="nx"&gt;hello&lt;/span&gt;&lt;span class="p"&gt;(){&lt;/span&gt;
+    &lt;span class="nx"&gt;await&lt;/span&gt; &lt;span class="nx"&gt;sleep&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2000&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;hello&amp;#39;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="nx"&gt;response&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;await&lt;/span&gt; &lt;span class="nx"&gt;hello&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;response&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;可以把async修饰理解为在原来的函数(origin_function)进行了一层包装：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="nb"&gt;Promise&lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nx"&gt;resolve&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;reject&lt;/span&gt;&lt;span class="p"&gt;)=&amp;gt;{&lt;/span&gt;
+    &lt;span class="k"&gt;try&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;response&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;origin_function&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+        &lt;span class="nx"&gt;resolve&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;response&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="k"&gt;catch&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;e&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
+        &lt;span class="nx"&gt;reject&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;e&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;})&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;Python中大量的是同步的代码，所以在实现的时候是在该线程中创建一个loop来管理coroutine;
+Javascript中主要是异步的代码，所以用Promise来把异步操作串起来。&lt;/p&gt;</content><category term="Async, Python, Javascript"></category></entry><entry><title>Install Xposed on AVD</title><link href="https://htwenning.github.io/install-xposed-on-avd.html" rel="alternate"></link><published>2018-09-29T00:00:00+08:00</published><updated>2018-09-29T00:00:00+08:00</updated><author><name>wenning</name></author><id>tag:htwenning.github.io,2018-09-29:/install-xposed-on-avd.html</id><summary type="html">&lt;h1&gt;Install Xposed on AVD&lt;/h1&gt;
 &lt;p&gt;在avd上获取root权限，安装xposed framework&lt;/p&gt;
 &lt;h3&gt;模拟器准备工作：&lt;/h3&gt;
 &lt;ul&gt;

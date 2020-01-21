@@ -21,36 +21,50 @@
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;get or create a loop&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;python
-if not (self.main_event_loop and self.main_event_loop.is_running()):
-    loop = asyncio.new_event_loop()
-    loop_executor = ThreadPoolExecutor(max_workers=1)
-else:
-    pass&lt;/code&gt;
-- create future
-&lt;code&gt;python
-call_result = Future()&lt;/code&gt;
-- run coroutine in loop
-&lt;code&gt;python
-if new_loop:
-    loop_executor = ThreadPoolExecutor(max_workers=1)
-    loop_future = loop_executor.submit(
-        self._run_event_loop,
-        loop,
-        self.main_wrap(
-            args, kwargs, call_result, source_thread, sys.exc_info()
-        ),
-    )
-else:
-    self.main_event_loop.call_soon_threadsafe(
-        self.main_event_loop.create_task,
-        self.main_wrap(
-            args, kwargs, call_result, source_thread, sys.exc_info()
-        ),
-    )&lt;/code&gt;
-- get result
-&lt;code&gt;python
-return call_result.result()&lt;/code&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="nv"&gt;not&lt;/span&gt; &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;self&lt;/span&gt;.&lt;span class="nv"&gt;main_event_loop&lt;/span&gt; &lt;span class="nv"&gt;and&lt;/span&gt; &lt;span class="nv"&gt;self&lt;/span&gt;.&lt;span class="nv"&gt;main_event_loop&lt;/span&gt;.&lt;span class="nv"&gt;is_running&lt;/span&gt;&lt;span class="ss"&gt;())&lt;/span&gt;:
+    &lt;span class="k"&gt;loop&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nv"&gt;asyncio&lt;/span&gt;.&lt;span class="nv"&gt;new_event_loop&lt;/span&gt;&lt;span class="ss"&gt;()&lt;/span&gt;
+    &lt;span class="nv"&gt;loop_executor&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nv"&gt;ThreadPoolExecutor&lt;/span&gt;&lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;max_workers&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;else&lt;/span&gt;:
+    &lt;span class="nv"&gt;pass&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;create future&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;call_result&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Future&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;run coroutine in loop&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="nv"&gt;new_loop&lt;/span&gt;:
+    &lt;span class="nv"&gt;loop_executor&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nv"&gt;ThreadPoolExecutor&lt;/span&gt;&lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;max_workers&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;
+    &lt;span class="nv"&gt;loop_future&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nv"&gt;loop_executor&lt;/span&gt;.&lt;span class="nv"&gt;submit&lt;/span&gt;&lt;span class="ss"&gt;(&lt;/span&gt;
+        &lt;span class="nv"&gt;self&lt;/span&gt;.&lt;span class="nv"&gt;_run_event_loop&lt;/span&gt;,
+        &lt;span class="k"&gt;loop&lt;/span&gt;,
+        &lt;span class="nv"&gt;self&lt;/span&gt;.&lt;span class="nv"&gt;main_wrap&lt;/span&gt;&lt;span class="ss"&gt;(&lt;/span&gt;
+            &lt;span class="nv"&gt;args&lt;/span&gt;, &lt;span class="nv"&gt;kwargs&lt;/span&gt;, &lt;span class="nv"&gt;call_result&lt;/span&gt;, &lt;span class="nv"&gt;source_thread&lt;/span&gt;, &lt;span class="nv"&gt;sys&lt;/span&gt;.&lt;span class="nv"&gt;exc_info&lt;/span&gt;&lt;span class="ss"&gt;()&lt;/span&gt;
+        &lt;span class="ss"&gt;)&lt;/span&gt;,
+    &lt;span class="ss"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;else&lt;/span&gt;:
+    &lt;span class="nv"&gt;self&lt;/span&gt;.&lt;span class="nv"&gt;main_event_loop&lt;/span&gt;.&lt;span class="nv"&gt;call_soon_threadsafe&lt;/span&gt;&lt;span class="ss"&gt;(&lt;/span&gt;
+        &lt;span class="nv"&gt;self&lt;/span&gt;.&lt;span class="nv"&gt;main_event_loop&lt;/span&gt;.&lt;span class="nv"&gt;create_task&lt;/span&gt;,
+        &lt;span class="nv"&gt;self&lt;/span&gt;.&lt;span class="nv"&gt;main_wrap&lt;/span&gt;&lt;span class="ss"&gt;(&lt;/span&gt;
+            &lt;span class="nv"&gt;args&lt;/span&gt;, &lt;span class="nv"&gt;kwargs&lt;/span&gt;, &lt;span class="nv"&gt;call_result&lt;/span&gt;, &lt;span class="nv"&gt;source_thread&lt;/span&gt;, &lt;span class="nv"&gt;sys&lt;/span&gt;.&lt;span class="nv"&gt;exc_info&lt;/span&gt;&lt;span class="ss"&gt;()&lt;/span&gt;
+        &lt;span class="ss"&gt;)&lt;/span&gt;,
+    &lt;span class="ss"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;get result&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nv"&gt;call_result&lt;/span&gt;.&lt;span class="nb"&gt;result&lt;/span&gt;&lt;span class="ss"&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3&gt;Javascript Promise&lt;/h3&gt;

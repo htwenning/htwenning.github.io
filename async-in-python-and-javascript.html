@@ -53,36 +53,50 @@
 <ul>
 <li>
 <p>get or create a loop</p>
-<p><code>python
-if not (self.main_event_loop and self.main_event_loop.is_running()):
-    loop = asyncio.new_event_loop()
-    loop_executor = ThreadPoolExecutor(max_workers=1)
-else:
-    pass</code>
-- create future
-<code>python
-call_result = Future()</code>
-- run coroutine in loop
-<code>python
-if new_loop:
-    loop_executor = ThreadPoolExecutor(max_workers=1)
-    loop_future = loop_executor.submit(
-        self._run_event_loop,
-        loop,
-        self.main_wrap(
-            args, kwargs, call_result, source_thread, sys.exc_info()
-        ),
-    )
-else:
-    self.main_event_loop.call_soon_threadsafe(
-        self.main_event_loop.create_task,
-        self.main_wrap(
-            args, kwargs, call_result, source_thread, sys.exc_info()
-        ),
-    )</code>
-- get result
-<code>python
-return call_result.result()</code></p>
+<div class="highlight"><pre><span></span><span class="k">if</span> <span class="nv">not</span> <span class="ss">(</span><span class="nv">self</span>.<span class="nv">main_event_loop</span> <span class="nv">and</span> <span class="nv">self</span>.<span class="nv">main_event_loop</span>.<span class="nv">is_running</span><span class="ss">())</span>:
+    <span class="k">loop</span> <span class="o">=</span> <span class="nv">asyncio</span>.<span class="nv">new_event_loop</span><span class="ss">()</span>
+    <span class="nv">loop_executor</span> <span class="o">=</span> <span class="nv">ThreadPoolExecutor</span><span class="ss">(</span><span class="nv">max_workers</span><span class="o">=</span><span class="mi">1</span><span class="ss">)</span>
+<span class="k">else</span>:
+    <span class="nv">pass</span>
+</pre></div>
+
+
+</li>
+<li>
+<p>create future</p>
+<div class="highlight"><pre><span></span><span class="n">call_result</span> <span class="o">=</span> <span class="n">Future</span><span class="p">()</span>
+</pre></div>
+
+
+</li>
+<li>
+<p>run coroutine in loop</p>
+<div class="highlight"><pre><span></span><span class="k">if</span> <span class="nv">new_loop</span>:
+    <span class="nv">loop_executor</span> <span class="o">=</span> <span class="nv">ThreadPoolExecutor</span><span class="ss">(</span><span class="nv">max_workers</span><span class="o">=</span><span class="mi">1</span><span class="ss">)</span>
+    <span class="nv">loop_future</span> <span class="o">=</span> <span class="nv">loop_executor</span>.<span class="nv">submit</span><span class="ss">(</span>
+        <span class="nv">self</span>.<span class="nv">_run_event_loop</span>,
+        <span class="k">loop</span>,
+        <span class="nv">self</span>.<span class="nv">main_wrap</span><span class="ss">(</span>
+            <span class="nv">args</span>, <span class="nv">kwargs</span>, <span class="nv">call_result</span>, <span class="nv">source_thread</span>, <span class="nv">sys</span>.<span class="nv">exc_info</span><span class="ss">()</span>
+        <span class="ss">)</span>,
+    <span class="ss">)</span>
+<span class="k">else</span>:
+    <span class="nv">self</span>.<span class="nv">main_event_loop</span>.<span class="nv">call_soon_threadsafe</span><span class="ss">(</span>
+        <span class="nv">self</span>.<span class="nv">main_event_loop</span>.<span class="nv">create_task</span>,
+        <span class="nv">self</span>.<span class="nv">main_wrap</span><span class="ss">(</span>
+            <span class="nv">args</span>, <span class="nv">kwargs</span>, <span class="nv">call_result</span>, <span class="nv">source_thread</span>, <span class="nv">sys</span>.<span class="nv">exc_info</span><span class="ss">()</span>
+        <span class="ss">)</span>,
+    <span class="ss">)</span>
+</pre></div>
+
+
+</li>
+<li>
+<p>get result</p>
+<div class="highlight"><pre><span></span><span class="k">return</span> <span class="nv">call_result</span>.<span class="nb">result</span><span class="ss">()</span>
+</pre></div>
+
+
 </li>
 </ul>
 <h3>Javascript Promise</h3>

@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0"><channel><title>wenning's blog</title><link>https://htwenning.github.io/</link><description></description><lastBuildDate>Sun, 23 Feb 2020 00:00:00 +0800</lastBuildDate><item><title>Django Middleware</title><link>https://htwenning.github.io/django-middleware.html</link><description>&lt;h1&gt;Django Middleware&lt;/h1&gt;
-&lt;p&gt;TL;DR
-django在处理middleware的时候就是装饰了handler，每一层middleware都会被convert_exception_to_response来处理异常，所以出错了直接会返回报错的信息。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt; TL;DR &lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;django在处理middleware的时候就是装饰了handler，每一层middleware都会被convert_exception_to_response来处理异常，所以出错了直接会返回报错的信息。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
 &lt;p&gt;之前在一次面试的时候，问我如果你写了一个middleware，如果请求过来的时候报错了，那么请求在返回的时候还会执行这个middleware吗？
 当时我只在一家公司写过3个月的django，所以我对这个问题还没有比较清晰的认识，我就说要看django的实现。&lt;/p&gt;
 &lt;p&gt;实际上django在实现middleware的时候还是非常简单的。&lt;/p&gt;

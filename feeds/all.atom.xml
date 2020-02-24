@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom"><title>wenning's blog</title><link href="https://htwenning.github.io/" rel="alternate"></link><link href="https://htwenning.github.io/feeds/all.atom.xml" rel="self"></link><id>https://htwenning.github.io/</id><updated>2020-02-23T00:00:00+08:00</updated><entry><title>Django Middleware</title><link href="https://htwenning.github.io/django-middleware.html" rel="alternate"></link><published>2020-02-23T00:00:00+08:00</published><updated>2020-02-23T00:00:00+08:00</updated><author><name>wenning</name></author><id>tag:htwenning.github.io,2020-02-23:/django-middleware.html</id><summary type="html">&lt;h1&gt;Django Middleware&lt;/h1&gt;
-&lt;p&gt;TL;DR
-django在处理middleware的时候就是装饰了handler，每一层middleware都会被convert_exception_to_response来处理异常，所以出错了直接会返回报错的信息。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt; TL;DR &lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;django在处理middleware的时候就是装饰了handler，每一层middleware都会被convert_exception_to_response来处理异常，所以出错了直接会返回报错的信息。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
 &lt;p&gt;之前在一次面试的时候，问我如果你写了一个middleware，如果请求过来的时候报错了，那么请求在返回的时候还会执行这个middleware吗？
 当时我只在一家公司写过3个月的django，所以我对这个问题还没有比较清晰的认识，我就说要看django的实现。&lt;/p&gt;
 &lt;p&gt;实际上django在实现middleware的时候还是非常简单的。&lt;/p&gt;
@@ -16,8 +19,11 @@ django在处理middleware的时候就是装饰了handler，每一层middleware�
     &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;mw_instance&lt;/span&gt; &lt;span class="ow"&gt;is&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
        &lt;span class="k"&gt;raise&lt;/span&gt; &lt;span class="n"&gt;ImproperlyConfigured&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
        &lt;span class="s1"&gt;&amp;#39;Middleware factory &lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s1"&gt; returned …&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;</summary><content type="html">&lt;h1&gt;Django Middleware&lt;/h1&gt;
-&lt;p&gt;TL;DR
-django在处理middleware的时候就是装饰了handler，每一层middleware都会被convert_exception_to_response来处理异常，所以出错了直接会返回报错的信息。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt; TL;DR &lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;django在处理middleware的时候就是装饰了handler，每一层middleware都会被convert_exception_to_response来处理异常，所以出错了直接会返回报错的信息。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
 &lt;p&gt;之前在一次面试的时候，问我如果你写了一个middleware，如果请求过来的时候报错了，那么请求在返回的时候还会执行这个middleware吗？
 当时我只在一家公司写过3个月的django，所以我对这个问题还没有比较清晰的认识，我就说要看django的实现。&lt;/p&gt;
 &lt;p&gt;实际上django在实现middleware的时候还是非常简单的。&lt;/p&gt;
@@ -61,14 +67,14 @@ django在处理middleware的时候就是装饰了handler，每一层middleware�
 
 
 &lt;p&gt;一个简单的middleware&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;python
-def simple_middleware(get_response):
-    def middleware(request):
-        print("before middleware")
-        response = get_response(request)
-        print("after middleware")
-        return response
-    return middleware&lt;/code&gt;python&lt;/p&gt;</content><category term="Django, Python, Middleware"></category></entry><entry><title>Async in Python and Javascript</title><link href="https://htwenning.github.io/async-in-python-and-javascript.html" rel="alternate"></link><published>2020-01-21T00:00:00+08:00</published><updated>2020-01-21T00:00:00+08:00</updated><author><name>wenning</name></author><id>tag:htwenning.github.io,2020-01-21:/async-in-python-and-javascript.html</id><summary type="html">&lt;h1&gt;Async in Python and Javascript&lt;/h1&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;simple_middleware&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;get_response&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;middleware&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;before middleware&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="n"&gt;response&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;get_response&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;after middleware&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;response&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;middleware&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;</content><category term="Django, Python, Middleware"></category></entry><entry><title>Async in Python and Javascript</title><link href="https://htwenning.github.io/async-in-python-and-javascript.html" rel="alternate"></link><published>2020-01-21T00:00:00+08:00</published><updated>2020-01-21T00:00:00+08:00</updated><author><name>wenning</name></author><id>tag:htwenning.github.io,2020-01-21:/async-in-python-and-javascript.html</id><summary type="html">&lt;h1&gt;Async in Python and Javascript&lt;/h1&gt;
 &lt;p&gt;&lt;a href="https://docs.djangoproject.com/en/3.0/releases/3.0/"&gt;Django 3.0&lt;/a&gt;于2019-12-2日发布，一个新功能是支持了ASGI&lt;/p&gt;
 &lt;p&gt;Darphne是目前一个支持ASGI的服务器，但是我在&lt;a href="https://github.com/django/channels/tree/master/loadtesting/2016-09-06"&gt;Channels&lt;/a&gt; 里面的benchmark看到:&lt;/p&gt;
 &lt;blockquote&gt;

@@ -36,8 +36,11 @@
   </footer><!-- /.post-info -->
   <div class="entry-content">
     <h1>Django Middleware</h1>
-<p>TL;DR
-django在处理middleware的时候就是装饰了handler，每一层middleware都会被convert_exception_to_response来处理异常，所以出错了直接会返回报错的信息。</p>
+<p><strong> TL;DR </strong></p>
+<blockquote>
+<p>django在处理middleware的时候就是装饰了handler，每一层middleware都会被convert_exception_to_response来处理异常，所以出错了直接会返回报错的信息。</p>
+</blockquote>
+<hr>
 <p>之前在一次面试的时候，问我如果你写了一个middleware，如果请求过来的时候报错了，那么请求在返回的时候还会执行这个middleware吗？
 当时我只在一家公司写过3个月的django，所以我对这个问题还没有比较清晰的认识，我就说要看django的实现。</p>
 <p>实际上django在实现middleware的时候还是非常简单的。</p>
@@ -81,14 +84,14 @@ django在处理middleware的时候就是装饰了handler，每一层middleware�
 
 
 <p>一个简单的middleware</p>
-<p><code>python
-def simple_middleware(get_response):
-    def middleware(request):
-        print("before middleware")
-        response = get_response(request)
-        print("after middleware")
-        return response
-    return middleware</code>python</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">simple_middleware</span><span class="p">(</span><span class="n">get_response</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">middleware</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;before middleware&quot;</span><span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">get_response</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;after middleware&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">response</span>
+    <span class="k">return</span> <span class="n">middleware</span>
+</pre></div>
   </div><!-- /.entry-content -->
 </section>
 <p>

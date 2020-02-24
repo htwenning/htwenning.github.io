@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>wenning's blog</title><link href="https://htwenning.github.io/" rel="alternate"></link><link href="https://htwenning.github.io/feeds/all.atom.xml" rel="self"></link><id>https://htwenning.github.io/</id><updated>2020-02-23T00:00:00+08:00</updated><entry><title>Django Middleware</title><link href="https://htwenning.github.io/django-middleware.html" rel="alternate"></link><published>2020-02-23T00:00:00+08:00</published><updated>2020-02-23T00:00:00+08:00</updated><author><name>wenning</name></author><id>tag:htwenning.github.io,2020-02-23:/django-middleware.html</id><summary type="html">&lt;h1&gt;Django Middleware&lt;/h1&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>wenning's blog</title><link href="https://htwenning.github.io/" rel="alternate"></link><link href="https://htwenning.github.io/feeds/all.atom.xml" rel="self"></link><id>https://htwenning.github.io/</id><updated>2020-02-23T00:00:00+08:00</updated><entry><title>Django Middleware Exception Handling</title><link href="https://htwenning.github.io/django-middleware-exception-handling.html" rel="alternate"></link><published>2020-02-23T00:00:00+08:00</published><updated>2020-02-23T00:00:00+08:00</updated><author><name>wenning</name></author><id>tag:htwenning.github.io,2020-02-23:/django-middleware-exception-handling.html</id><summary type="html">&lt;h1&gt;Django Middleware Exception Handling&lt;/h1&gt;
 &lt;p&gt;&lt;strong&gt; TL;DR &lt;/strong&gt;&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;django在处理middleware的时候就是装饰了handler，每一层middleware都会被convert_exception_to_response来处理异常，所以出错了直接会返回报错的信息。&lt;/p&gt;
@@ -18,7 +18,7 @@
         &lt;span class="k"&gt;pass&lt;/span&gt;   
     &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;mw_instance&lt;/span&gt; &lt;span class="ow"&gt;is&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
        &lt;span class="k"&gt;raise&lt;/span&gt; &lt;span class="n"&gt;ImproperlyConfigured&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
-       &lt;span class="s1"&gt;&amp;#39;Middleware factory &lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s1"&gt; returned …&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;</summary><content type="html">&lt;h1&gt;Django Middleware&lt;/h1&gt;
+       &lt;span class="s1"&gt;&amp;#39;Middleware factory …&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;</summary><content type="html">&lt;h1&gt;Django Middleware Exception Handling&lt;/h1&gt;
 &lt;p&gt;&lt;strong&gt; TL;DR &lt;/strong&gt;&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;django在处理middleware的时候就是装饰了handler，每一层middleware都会被convert_exception_to_response来处理异常，所以出错了直接会返回报错的信息。&lt;/p&gt;

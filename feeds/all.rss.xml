@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0"><channel><title>wenning's blog</title><link>https://htwenning.github.io/</link><description></description><lastBuildDate>Sun, 23 Feb 2020 00:00:00 +0800</lastBuildDate><item><title>Django Middleware</title><link>https://htwenning.github.io/django-middleware.html</link><description>&lt;h1&gt;Django Middleware&lt;/h1&gt;
+<rss version="2.0"><channel><title>wenning's blog</title><link>https://htwenning.github.io/</link><description></description><lastBuildDate>Sun, 23 Feb 2020 00:00:00 +0800</lastBuildDate><item><title>Django Middleware Exception Handling</title><link>https://htwenning.github.io/django-middleware-exception-handling.html</link><description>&lt;h1&gt;Django Middleware Exception Handling&lt;/h1&gt;
 &lt;p&gt;&lt;strong&gt; TL;DR &lt;/strong&gt;&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;django在处理middleware的时候就是装饰了handler，每一层middleware都会被convert_exception_to_response来处理异常，所以出错了直接会返回报错的信息。&lt;/p&gt;
@@ -18,7 +18,7 @@
         &lt;span class="k"&gt;pass&lt;/span&gt;   
     &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;mw_instance&lt;/span&gt; &lt;span class="ow"&gt;is&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
        &lt;span class="k"&gt;raise&lt;/span&gt; &lt;span class="n"&gt;ImproperlyConfigured&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
-       &lt;span class="s1"&gt;&amp;#39;Middleware factory &lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s1"&gt; returned …&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">wenning</dc:creator><pubDate>Sun, 23 Feb 2020 00:00:00 +0800</pubDate><guid isPermaLink="false">tag:htwenning.github.io,2020-02-23:/django-middleware.html</guid><category>Django, Python, Middleware</category></item><item><title>Async in Python and Javascript</title><link>https://htwenning.github.io/async-in-python-and-javascript.html</link><description>&lt;h1&gt;Async in Python and Javascript&lt;/h1&gt;
+       &lt;span class="s1"&gt;&amp;#39;Middleware factory …&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">wenning</dc:creator><pubDate>Sun, 23 Feb 2020 00:00:00 +0800</pubDate><guid isPermaLink="false">tag:htwenning.github.io,2020-02-23:/django-middleware-exception-handling.html</guid><category>Django, Python, Middleware</category></item><item><title>Async in Python and Javascript</title><link>https://htwenning.github.io/async-in-python-and-javascript.html</link><description>&lt;h1&gt;Async in Python and Javascript&lt;/h1&gt;
 &lt;p&gt;&lt;a href="https://docs.djangoproject.com/en/3.0/releases/3.0/"&gt;Django 3.0&lt;/a&gt;于2019-12-2日发布，一个新功能是支持了ASGI&lt;/p&gt;
 &lt;p&gt;Darphne是目前一个支持ASGI的服务器，但是我在&lt;a href="https://github.com/django/channels/tree/master/loadtesting/2016-09-06"&gt;Channels&lt;/a&gt; 里面的benchmark看到:&lt;/p&gt;
 &lt;blockquote&gt;

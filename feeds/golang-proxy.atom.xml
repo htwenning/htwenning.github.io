@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>wenning's blog - Golang, Proxy</title><link href="https://htwenning.github.io/" rel="alternate"></link><link href="https://htwenning.github.io/feeds/golang-proxy.atom.xml" rel="self"></link><id>https://htwenning.github.io/</id><updated>2020-03-27T00:00:00+08:00</updated><entry><title>Proxy Golang</title><link href="https://htwenning.github.io/proxy-golang.html" rel="alternate"></link><published>2020-03-27T00:00:00+08:00</published><updated>2020-03-27T00:00:00+08:00</updated><author><name>wenning</name></author><id>tag:htwenning.github.io,2020-03-27:/proxy-golang.html</id><summary type="html">&lt;h1&gt;Proxy Golang&lt;/h1&gt;
+&lt;p&gt;go的便捷性提升来自三个要素：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;go module&lt;/li&gt;
+&lt;li&gt;github private repo free&lt;/li&gt;
+&lt;li&gt;goproxy.io&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;从1.11开始支持go module， 让项目不再依赖gopath, 之前的所有过渡方案都可以舍弃了;
+github免费了私有项目，作为稳定和使用广泛的git仓库，私有免费之后，可以让开发避免本地依赖，舍弃 require replace;
+goproxy.io提供了免费的代理，让build无需翻墙。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;go env -w &lt;span class="nv"&gt;GO111MODULE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;on
+go env -w &lt;span class="nv"&gt;GOPROXY&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;https://goproxy.io,direct
+
+&lt;span class="c1"&gt;# 设置不走 proxy 的私有仓库，多个用逗号相隔（可选）&lt;/span&gt;
+go env -w &lt;span class="nv"&gt;GOPRIVATE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;github.com …&lt;/pre&gt;&lt;/div&gt;</summary><content type="html">&lt;h1&gt;Proxy Golang&lt;/h1&gt;
+&lt;p&gt;go的便捷性提升来自三个要素：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;go module&lt;/li&gt;
+&lt;li&gt;github private repo free&lt;/li&gt;
+&lt;li&gt;goproxy.io&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;从1.11开始支持go module， 让项目不再依赖gopath, 之前的所有过渡方案都可以舍弃了;
+github免费了私有项目，作为稳定和使用广泛的git仓库，私有免费之后，可以让开发避免本地依赖，舍弃 require replace;
+goproxy.io提供了免费的代理，让build无需翻墙。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;go env -w &lt;span class="nv"&gt;GO111MODULE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;on
+go env -w &lt;span class="nv"&gt;GOPROXY&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;https://goproxy.io,direct
+
+&lt;span class="c1"&gt;# 设置不走 proxy 的私有仓库，多个用逗号相隔（可选）&lt;/span&gt;
+go env -w &lt;span class="nv"&gt;GOPRIVATE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;github.com/n-wen/*
+
+&lt;span class="c1"&gt;# github 使用ssh替换https&lt;/span&gt;
+git config --global url.&lt;span class="s2"&gt;&amp;quot;git@github.com:&amp;quot;&lt;/span&gt;.insteadOf &lt;span class="s2"&gt;&amp;quot;https://github.com/&amp;quot;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;em&gt;发布的私有module可以使用git tag来标记版本&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Reference:&lt;/em&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://goproxy.io/zh/"&gt;goproxy.io&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://gist.github.com/dmitshur/6927554"&gt;How to &lt;code&gt;go get&lt;/code&gt; private repos using SSH key auth instead of password auth&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://blog.golang.org/publishing-go-modules"&gt;Publishing Go Modules&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><category term="Golang, Proxy"></category></entry></feed>

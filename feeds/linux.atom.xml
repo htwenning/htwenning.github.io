@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>wenning's blog - Linux</title><link href="https://htwenning.github.io/" rel="alternate"></link><link href="https://htwenning.github.io/feeds/linux.atom.xml" rel="self"></link><id>https://htwenning.github.io/</id><updated>2018-07-11T18:28:00+08:00</updated><entry><title>a little awk</title><link href="https://htwenning.github.io/a-little-awk.html" rel="alternate"></link><published>2018-07-11T18:28:00+08:00</published><updated>2018-07-11T18:28:00+08:00</updated><author><name>wenning</name></author><id>tag:htwenning.github.io,2018-07-11:/a-little-awk.html</id><summary type="html">&lt;h1&gt;a little awk&lt;/h1&gt;
+&lt;p&gt;参考:
+https://gregable.com/2010/09/why-you-should-know-just-little-awk.html&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;默认使用空格分割&lt;/li&gt;
+&lt;li&gt;使用$符号选取字段&lt;/li&gt;
+&lt;li&gt;NF是字段数, NR行号&lt;/li&gt;
+&lt;li&gt;可以使用if进行判断语句&lt;/li&gt;
+&lt;li&gt;print 打印后面的内容&lt;/li&gt;
+&lt;li&gt;可以把字段存入变量，不用声明, 也不用考虑单位&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;例子：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;docker images &lt;span class="p"&gt;|&lt;/span&gt; awk &lt;span class="s1"&gt;&amp;#39;{print $1}&amp;#39;&lt;/span&gt;
+docker images &lt;span class="p"&gt;|&lt;/span&gt; awk &lt;span class="s1"&gt;&amp;#39;{if($1 == &amp;quot;&amp;lt;none&amp;gt;&amp;quot;){print $3}}&amp;#39;&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; xargs docker rmi
+docker images &lt;span class="p"&gt;|&lt;/span&gt; awk &lt;span class="s1"&gt;&amp;#39;{print &amp;quot;tag: &amp;quot;, $2}&amp;#39;&lt;/span&gt;
+docker images &lt;span class="p"&gt;|&lt;/span&gt; awk &lt;span class="s1"&gt;&amp;#39;{a += $NF …&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;</summary><content type="html">&lt;h1&gt;a little awk&lt;/h1&gt;
+&lt;p&gt;参考:
+https://gregable.com/2010/09/why-you-should-know-just-little-awk.html&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;默认使用空格分割&lt;/li&gt;
+&lt;li&gt;使用$符号选取字段&lt;/li&gt;
+&lt;li&gt;NF是字段数, NR行号&lt;/li&gt;
+&lt;li&gt;可以使用if进行判断语句&lt;/li&gt;
+&lt;li&gt;print 打印后面的内容&lt;/li&gt;
+&lt;li&gt;可以把字段存入变量，不用声明, 也不用考虑单位&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;例子：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;docker images &lt;span class="p"&gt;|&lt;/span&gt; awk &lt;span class="s1"&gt;&amp;#39;{print $1}&amp;#39;&lt;/span&gt;
+docker images &lt;span class="p"&gt;|&lt;/span&gt; awk &lt;span class="s1"&gt;&amp;#39;{if($1 == &amp;quot;&amp;lt;none&amp;gt;&amp;quot;){print $3}}&amp;#39;&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; xargs docker rmi
+docker images &lt;span class="p"&gt;|&lt;/span&gt; awk &lt;span class="s1"&gt;&amp;#39;{print &amp;quot;tag: &amp;quot;, $2}&amp;#39;&lt;/span&gt;
+docker images &lt;span class="p"&gt;|&lt;/span&gt; awk &lt;span class="s1"&gt;&amp;#39;{a += $NF; print &amp;quot;total: &amp;quot;, a}&amp;#39;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;</content><category term="Linux"></category></entry></feed>
